@@ -1,6 +1,3 @@
-import { create } from 'zustand';
-// Since we're not using zustand, let's use a simple context/hook approach
-
 import { useState, useEffect } from 'react';
 
 export function useTheme() {

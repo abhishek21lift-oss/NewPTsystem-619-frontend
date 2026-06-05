@@ -5,7 +5,15 @@ import {
   Trophy, BarChart3, Calendar, TrendingUp, Bell,
 } from 'lucide-react';
 
-const navItems = [
+interface NavItem {
+  label: string;
+  icon: any;
+  path: string;
+  badge?: string;
+  new?: boolean;
+}
+
+const navItems: { section: string; items: NavItem[] }[] = [
   { section: 'Overview', items: [
     { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
   ]},
