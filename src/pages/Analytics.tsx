@@ -17,10 +17,14 @@ export default function Analytics() {
       setGenderDist(gd || []);
       setTimeout(() => {
         if (!drawn.current) {
-          drawDonut3D('d-gender', [{ v: 40, c: '#0A84FF' }, { v: 27, c: '#FF6B9D' }]);
+          const gdData = (gd || []).length > 0
+            ? (gd || []).map((g: any, i: number) => ({ v: g.count, c: ['#0A84FF', '#FF6B9D'][i] || '#888' }))
+            : [{ v: 42, c: '#0A84FF' }, { v: 29, c: '#FF6B9D' }];
+          drawDonut3D('d-gender', gdData);
+          const trColors = ['#FF375F', '#FF6B9D', '#5AC8F5', '#FFD60A'];
           const trData = (tb || []).map((t: any, i: number) => ({
-            v: t.total_revenue || [388000, 292000, 236000][i] || 1000,
-            c: ['#FF375F', '#FF6B9D', '#5AC8F5'][i] || '#888',
+            v: t.total_revenue || 1000,
+            c: trColors[i] || '#888',
           }));
           if (trData.length > 0) drawDonut3D('d-rev-tr', trData);
           drawn.current = true;
@@ -31,18 +35,17 @@ export default function Analytics() {
 
   if (loading) return <LoadingSpinner />;
 
-  const totalRev = trainerBreakdown.reduce((s, t) => s + (t.total_revenue || 0), 0) || 916000;
-  const maleCount = genderDist.find((g: any) => g.gender === 'Male')?.count || 40;
-  const femaleCount = genderDist.find((g: any) => g.gender === 'Female')?.count || 27;
-  const totalClients = maleCount + femaleCount;
+  const totalRev = trainerBreakdown.reduce((s, t) => s + (t.total_revenue || 0), 0) || 0;
+  const maleCount = genderDist.find((g: any) => g.gender === 'Male')?.count || 0;
+  const femaleCount = genderDist.find((g: any) => g.gender === 'Female')?.count || 0;
+  const totalClients = maleCount + femaleCount || trainerBreakdown.reduce((s, t) => s + Number(t.total_clients), 0);
 
-  const trColors = ['#FF375F', '#FF6B9D', '#5AC8F5'];
-  const trNames = ['Abhishek', 'Riya', 'Rajat'];
+  const trColors = ['#FF375F', '#FF6B9D', '#5AC8F5', '#FFD60A'];
   const trPcts = trainerBreakdown.map((t, i) => ({
-    name: t.full_name || trNames[i],
-    rev: t.total_revenue || [388000, 292000, 236000][i] || 0,
-    pct: totalRev > 0 ? ((t.total_revenue || 0) / totalRev * 100).toFixed(0) : [42, 32, 26][i],
-    color: trColors[i],
+    name: t.full_name || '',
+    rev: t.total_revenue || 0,
+    pct: totalRev > 0 ? ((t.total_revenue || 0) / totalRev * 100).toFixed(0) : '0',
+    color: trColors[i] || '#888',
   }));
 
   return (
@@ -51,7 +54,7 @@ export default function Analytics() {
         style={{ background: 'linear-gradient(135deg, rgba(50,215,75,0.08), rgba(50,215,75,0.03))', border: '1px solid rgba(50,215,75,0.2)', color: 'var(--success)' }}
       >
         <span className="text-[16px]">🚀</span>
-        <span>Studio grew <strong>+2700%</strong> from May 2025 (₹7K) to peak Mar 2026 (₹2.10L). Exceptional trajectory!</span>
+        <span>Studio revenue across <strong>{trainerBreakdown.length} trainers</strong> with <strong>{totalClients} total clients</strong>. Exceptional trajectory!</span>
       </div>
 
       <div className="mb-[14px] grid grid-cols-4 gap-[14px]">

@@ -19,17 +19,27 @@ export default function Payouts() {
 
   if (loading) return <LoadingSpinner />;
 
-  const trainerMeta = [
-    { short_code: 'AK', name: 'Abhishek Katiyar', color: '#FF7087', rev: 388000, count: 36 },
-    { short_code: 'RS', name: 'Riya Singh', color: '#FF8BB8', rev: 292000, count: 19 },
-    { short_code: 'RK', name: 'Rajat Katiyar', color: '#5AC8F5', rev: 236000, count: 12 },
-  ];
-
-  const monthlyByTrainer: Record<string, { m: string; rev: number }[]> = {
-    AK: [],
-    RS: [],
-    RK: [],
+  const trainerColorsMap: Record<string, string> = {
+    AK: '#FF7087', RS: '#FF8BB8', RK: '#5AC8F5', SV: '#FFD60A',
   };
+
+  const trainerMeta = trainers.length > 0
+    ? trainers.map((t: any) => ({
+        short_code: t.short_code,
+        name: t.full_name,
+        color: trainerColorsMap[t.short_code] || '#FF7087',
+        rev: t.total_revenue,
+        count: t.total_clients,
+      }))
+    : [
+        { short_code: 'AK', name: 'Abhishek Katiyar', color: '#FF7087', rev: 547666, count: 36 },
+        { short_code: 'RS', name: 'Riya Singh', color: '#FF8BB8', rev: 332000, count: 20 },
+        { short_code: 'RK', name: 'Rajat Katiyar', color: '#5AC8F5', rev: 283000, count: 14 },
+        { short_code: 'SV', name: 'Shivani Verma', color: '#FFD60A', rev: 17000, count: 1 },
+      ];
+
+  const monthlyByTrainer: Record<string, { m: string; rev: number }[]> = {};
+  trainerMeta.forEach(m => { monthlyByTrainer[m.short_code] = []; });
 
   payouts.forEach((p: any) => {
     const code = p.trainers?.short_code || p.trainer_short_code || 'AK';

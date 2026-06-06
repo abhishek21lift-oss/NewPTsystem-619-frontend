@@ -8,9 +8,16 @@ export default function Clients() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedClient, setSelectedClient] = useState<any>(null);
+  const [dashboard, setDashboard] = useState<any>(null);
 
   useEffect(() => {
-    api.getClients().then((d: any) => setClients(d.data || d || [])).catch(console.error).finally(() => setLoading(false));
+    Promise.all([
+      api.getClients(),
+      api.getDashboard(),
+    ]).then(([c, d]) => {
+      setClients(c.data || c || []);
+      setDashboard(d);
+    }).catch(console.error).finally(() => setLoading(false));
   }, []);
 
   if (loading) return <LoadingSpinner />;
@@ -20,14 +27,18 @@ export default function Clients() {
     c.display_id?.toLowerCase().includes(search.toLowerCase())
   );
 
+  const s = dashboard?.stats || {};
+  const maleCount = clients.filter((c: any) => c.gender === 'Male').length;
+  const femaleCount = clients.filter((c: any) => c.gender === 'Female').length;
+
   return (
     <div>
       <div className="mb-[14px] flex gap-[9px] flex-wrap">
-        <div className="qa-chip green">🟢 Active (23)</div>
-        <div className="qa-chip orange">⏰ Expiring (1)</div>
-        <div className="qa-chip">👤 All (67)</div>
-        <div className="qa-chip blue">👨 Male</div>
-        <div className="qa-chip blue">👩 Female</div>
+        <div className="qa-chip green">🟢 Active ({s.active_enrollments || 0})</div>
+        <div className="qa-chip orange">⏰ Expiring ({s.soon_enrollments || 0})</div>
+        <div className="qa-chip">👤 All ({clients.length})</div>
+        <div className="qa-chip blue">👨 Male ({maleCount})</div>
+        <div className="qa-chip blue">👩 Female ({femaleCount})</div>
       </div>
       <GlassCard>
         <CardHeader title="Master Client Database"

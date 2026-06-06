@@ -23,6 +23,7 @@ export default function ActiveClients() {
     AK: { name: 'Abhishek Katiyar', initials: 'AK', color: '#FF375F', bg: 'linear-gradient(145deg,#FF375F,#8B0022)', shadow: 'rgba(255,55,95,0.4)' },
     RS: { name: 'Riya Singh', initials: 'RS', color: '#FF6B9D', bg: 'linear-gradient(145deg,#FF6B9D,#C2185B)', shadow: 'rgba(255,107,157,0.4)' },
     RK: { name: 'Rajat Katiyar', initials: 'RK', color: '#5AC8F5', bg: 'linear-gradient(145deg,#5AC8F5,#0A84FF)', shadow: 'rgba(90,200,245,0.4)' },
+    SV: { name: 'Shivani Verma', initials: 'SV', color: '#FFD60A', bg: 'linear-gradient(145deg,#FFD60A,#FF8C00)', shadow: 'rgba(255,214,0,0.4)' },
   };
 
   return (
