@@ -30,12 +30,13 @@ export default function Modal({ open, onClose, children, maxWidth = '520px' }: M
       />
       <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
         <div
-          className="relative w-full animate-[fadeUp_0.2s_ease-out] rounded-[16px] border border-[var(--border)] shadow-2xl"
+          className="relative w-full animate-[fadeUp_0.25s_cubic-bezier(0.16,1,0.3,1)] rounded-[20px] border border-[rgba(255,255,255,0.08)] shadow-2xl"
           style={{
             maxWidth,
-            background: 'rgba(18,18,22,0.96)',
-            backdropFilter: 'blur(40px) saturate(180%)',
-            boxShadow: '0 32px 64px rgba(0,0,0,0.5)',
+            background: 'rgba(18,18,22,0.97)',
+            backdropFilter: 'blur(60px) saturate(180%)',
+            WebkitBackdropFilter: 'blur(60px) saturate(180%)',
+            boxShadow: '0 40px 80px rgba(0,0,0,0.5)',
           }}
         >
           <button

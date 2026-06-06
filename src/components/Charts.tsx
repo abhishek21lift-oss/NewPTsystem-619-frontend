@@ -9,19 +9,20 @@ export function KpiCard({ label, value, sub, color, icon: Icon, children, onClic
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 14 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, ease: [0.4,0,0.2,1] }}
-      className="relative cursor-default overflow-hidden rounded-[22px] border border-[var(--border)] bg-[var(--surface)] p-5 transition-all duration-250 hover:-translate-y-[4px] hover:border-[var(--border-strong)]"
+      transition={{ duration: 0.5, ease: [0.16,1,0.3,1] }}
+      className="relative cursor-default overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.07)] p-5 transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(255,255,255,0.15)]"
+      style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(40px)' }}
       onClick={onClick}
     >
-      <div className="absolute -right-[30px] -top-[30px] h-[100px] w-[100px] rounded-full opacity-[0.06] blur-[20px]"
+      <div className="absolute -right-[30px] -top-[30px] h-[120px] w-[120px] rounded-full opacity-[0.08] blur-[30px]"
         style={{ background: color }}
       />
       <div className="relative z-[1]">
         <div className="mb-[10px] flex items-start justify-between">
           <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[11px]"
-            style={{ background: `${color}20` }}
+            style={{ background: `${color}18` }}
           >
             <Icon size={18} style={{ color }} />
           </div>
@@ -113,7 +114,7 @@ export function DonutChart({ segments, centerVal, centerLabel }: {
           startAngle = endAngle;
           return <path key={idx} d={d} fill={`url(#dg-${idx})`} stroke="rgba(6,6,8,0.85)" strokeWidth="1.5" />;
         })}
-        <circle cx="75" cy="75" r={innerR} fill="#060608" />
+        <circle cx="75" cy="75" r={innerR} fill="#0C0C0E" />
       </svg>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
         <div className="text-[22px] font-extrabold tracking-tight leading-none">{centerVal}</div>
@@ -259,7 +260,7 @@ export function drawDonut3D(id: string, segs: { v: number; c: string }[]) {
 
   ctx.beginPath();
   ctx.arc(cx, cy, IR, 0, Math.PI * 2);
-  ctx.fillStyle = '#060608';
+  ctx.fillStyle = '#0C0C0E';
   ctx.fill();
 
   const sh = ctx.createRadialGradient(cx - 16, cy - 22, 4, cx, cy, OR);

@@ -14,7 +14,9 @@ export default function ClientDetail({ client, open, onClose }: Props) {
   const [editing, setEditing] = useState(false);
   const [editName, setEditName] = useState('');
   const [editPhone, setEditPhone] = useState('');
+  const [editEmail, setEditEmail] = useState('');
   const [editGender, setEditGender] = useState('');
+  const [editNotes, setEditNotes] = useState('');
   const [saving, setSaving] = useState(false);
 
   if (!client) return null;
@@ -29,7 +31,9 @@ export default function ClientDetail({ client, open, onClose }: Props) {
   const startEdit = () => {
     setEditName(client.full_name || '');
     setEditPhone(client.phone || '');
+    setEditEmail(client.email || '');
     setEditGender(client.gender || 'Male');
+    setEditNotes(client.notes || '');
     setEditing(true);
   };
 
@@ -47,11 +51,15 @@ export default function ClientDetail({ client, open, onClose }: Props) {
       await api.updateClient(client.id, {
         full_name: editName.trim(),
         phone: editPhone.trim(),
+        email: editEmail.trim(),
         gender: editGender,
+        notes: editNotes.trim(),
       });
       client.full_name = editName.trim();
       client.phone = editPhone.trim();
+      client.email = editEmail.trim();
       client.gender = editGender;
+      client.notes = editNotes.trim();
       toast.success('Client updated');
       setEditing(false);
     } catch (e: any) {
@@ -81,12 +89,17 @@ export default function ClientDetail({ client, open, onClose }: Props) {
               {editing ? (
                 <>
                   <input type="text" value={editName} onChange={e => setEditName(e.target.value)}
-                    className="w-full rounded-[8px] border border-white/30 bg-white/10 px-[10px] py-[5px] text-[15px] font-bold text-white outline-none backdrop-blur-sm"
+                    className="w-full rounded-[8px] border border-white/30 bg-white/10 px-[10px] py-[5px] text-[15px] font-bold text-white outline-none backdrop-blur-sm placeholder:text-white/40"
+                    placeholder="Full Name"
                   />
                   <div className="mt-[6px] flex gap-[8px] items-center">
                     <input type="text" value={editPhone} onChange={e => setEditPhone(e.target.value)}
-                      className="flex-1 rounded-[8px] border border-white/30 bg-white/10 px-[10px] py-[4px] text-[11px] text-white/90 outline-none backdrop-blur-sm"
+                      className="flex-1 rounded-[8px] border border-white/30 bg-white/10 px-[10px] py-[4px] text-[11px] text-white/90 outline-none backdrop-blur-sm placeholder:text-white/40"
                       placeholder="Phone"
+                    />
+                    <input type="email" value={editEmail} onChange={e => setEditEmail(e.target.value)}
+                      className="flex-1 rounded-[8px] border border-white/30 bg-white/10 px-[10px] py-[4px] text-[11px] text-white/90 outline-none backdrop-blur-sm placeholder:text-white/40"
+                      placeholder="Email"
                     />
                     <div className="flex gap-[4px]">
                       {['Male', 'Female'].map(g => (
@@ -99,6 +112,10 @@ export default function ClientDetail({ client, open, onClose }: Props) {
                       ))}
                     </div>
                   </div>
+                  <textarea value={editNotes} onChange={e => setEditNotes(e.target.value)}
+                    className="mt-[6px] w-full rounded-[8px] border border-white/30 bg-white/10 px-[10px] py-[4px] text-[11px] text-white/90 outline-none backdrop-blur-sm placeholder:text-white/40 resize-none"
+                    rows={2} placeholder="Notes (optional)"
+                  />
                 </>
               ) : (
                 <>
