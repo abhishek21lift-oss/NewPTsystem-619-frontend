@@ -1,9 +1,11 @@
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import {
   LayoutDashboard, Users, UserCheck, DollarSign, Wallet, Scale,
   Trophy, BarChart3, Calendar, TrendingUp, Bell,
 } from 'lucide-react';
+import { api } from '../lib/api';
 
 interface NavItem {
   label: string;
@@ -13,35 +15,44 @@ interface NavItem {
   new?: boolean;
 }
 
-const navItems: { section: string; items: NavItem[] }[] = [
-  { section: 'Overview', items: [
-    { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
-  ]},
-  { section: 'Clients', items: [
-    { label: 'All Clients', icon: Users, path: '/clients', badge: '67' },
-    { label: 'Active Clients', icon: UserCheck, path: '/active', badge: '23' },
-  ]},
-  { section: 'Finance', items: [
-    { label: 'Revenue', icon: DollarSign, path: '/revenue' },
-    { label: 'Payouts', icon: Wallet, path: '/payouts' },
-    { label: 'Balance Sheet', icon: Scale, path: '/balance' },
-  ]},
-  { section: 'Trainers', items: [
-    { label: 'Trainer Stats', icon: Trophy, path: '/trainers' },
-    { label: 'Analytics', icon: BarChart3, path: '/analytics', new: true },
-  ]},
-  { section: 'Schedule', items: [
-    { label: 'Schedule', icon: Calendar, path: '/schedule' },
-    { label: 'Forecast', icon: TrendingUp, path: '/forecast' },
-  ]},
-  { section: 'Membership', items: [
-    { label: 'Membership Plans', icon: Bell, path: '/membership', new: true },
-  ]},
-];
-
 export default function Sidebar() {
   const location = useLocation();
   const navigate = useNavigate();
+  const [totalClients, setTotalClients] = useState(71);
+  const [activeClients, setActiveClients] = useState(32);
+
+  useEffect(() => {
+    api.getDashboard().then(d => {
+      setTotalClients(d.stats.total_clients);
+      setActiveClients(d.stats.active_enrollments);
+    }).catch(() => {});
+  }, []);
+
+  const navItems: { section: string; items: NavItem[] }[] = [
+    { section: 'Overview', items: [
+      { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
+    ]},
+    { section: 'Clients', items: [
+      { label: 'All Clients', icon: Users, path: '/clients', badge: String(totalClients) },
+      { label: 'Active Clients', icon: UserCheck, path: '/active', badge: String(activeClients) },
+    ]},
+    { section: 'Finance', items: [
+      { label: 'Revenue', icon: DollarSign, path: '/revenue' },
+      { label: 'Payouts', icon: Wallet, path: '/payouts' },
+      { label: 'Balance Sheet', icon: Scale, path: '/balance' },
+    ]},
+    { section: 'Trainers', items: [
+      { label: 'Trainer Stats', icon: Trophy, path: '/trainers' },
+      { label: 'Analytics', icon: BarChart3, path: '/analytics' },
+    ]},
+    { section: 'Schedule', items: [
+      { label: 'Schedule', icon: Calendar, path: '/schedule' },
+      { label: 'Forecast', icon: TrendingUp, path: '/forecast' },
+    ]},
+    { section: 'Membership', items: [
+      { label: 'Membership Plans', icon: Bell, path: '/membership' },
+    ]},
+  ];
 
   return (
     <aside className="fixed left-0 top-0 z-50 flex h-screen w-[var(--sidebar-w)] flex-col border-r border-[var(--border)]"
