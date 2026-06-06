@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { clsx } from 'clsx';
 import {
   LayoutDashboard, Users, UserCheck, DollarSign, Wallet, Scale,
-  Trophy, BarChart3, Calendar, TrendingUp, Bell,
+  Trophy, BarChart3, Calendar, TrendingUp, Bell, ChevronDown, Plus,
 } from 'lucide-react';
 import { api } from '../lib/api';
 
@@ -15,11 +15,16 @@ interface NavItem {
   new?: boolean;
 }
 
-export default function Sidebar() {
+interface SidebarProps {
+  onAddTrainer?: () => void;
+}
+
+export default function Sidebar({ onAddTrainer }: SidebarProps) {
   const location = useLocation();
   const navigate = useNavigate();
   const [totalClients, setTotalClients] = useState(71);
   const [activeClients, setActiveClients] = useState(32);
+  const [trainerOpen, setTrainerOpen] = useState(true);
 
   useEffect(() => {
     api.getDashboard().then(d => {
@@ -27,6 +32,8 @@ export default function Sidebar() {
       setActiveClients(d.stats.active_enrollments);
     }).catch(() => {});
   }, []);
+
+  const trainerActive = ['/trainers', '/analytics'].includes(location.pathname);
 
   const navItems: { section: string; items: NavItem[] }[] = [
     { section: 'Overview', items: [
@@ -40,10 +47,6 @@ export default function Sidebar() {
       { label: 'Revenue', icon: DollarSign, path: '/revenue' },
       { label: 'Payouts', icon: Wallet, path: '/payouts' },
       { label: 'Balance Sheet', icon: Scale, path: '/balance' },
-    ]},
-    { section: 'Trainers', items: [
-      { label: 'Trainer Stats', icon: Trophy, path: '/trainers' },
-      { label: 'Analytics', icon: BarChart3, path: '/analytics' },
     ]},
     { section: 'Schedule', items: [
       { label: 'Schedule', icon: Calendar, path: '/schedule' },
@@ -93,7 +96,7 @@ export default function Sidebar() {
                     'flex items-center gap-[9px] rounded-[11px] px-[10px] py-[9px] text-[13px] font-medium cursor-pointer transition-all duration-150 mb-[2px] border border-transparent',
                     active
                       ? 'text-[#FF7087] border-[rgba(255,55,95,0.22)]'
-                      : 'text-[var(--text-secondary)] hover:bg-surface hover:text-[var(--text-primary)]',
+                      : 'text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)]',
                     active && 'bg-gradient-to-br from-[rgba(255,55,95,0.16)] to-[rgba(255,55,95,0.07)]',
                   )}
                 >
@@ -110,6 +113,57 @@ export default function Sidebar() {
             })}
           </div>
         ))}
+
+        <div>
+          <div className="px-[10px] pb-[7px] pt-[18px] text-[9.5px] font-bold uppercase tracking-[1px] text-[var(--text-tertiary)]">
+            Trainers
+          </div>
+          <div
+            onClick={() => setTrainerOpen(o => !o)}
+            className={clsx(
+              'flex items-center gap-[9px] rounded-[11px] px-[10px] py-[9px] text-[13px] font-medium cursor-pointer transition-all duration-150 mb-[2px] border border-transparent',
+              trainerActive
+                ? 'text-[#FF7087] border-[rgba(255,55,95,0.22)] bg-gradient-to-br from-[rgba(255,55,95,0.16)] to-[rgba(255,55,95,0.07)]'
+                : 'text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)]',
+            )}
+          >
+            <Trophy size={16} className={clsx('shrink-0', trainerActive ? 'opacity-100' : 'opacity-65')} />
+            <span className="flex-1">Trainer Master</span>
+            <ChevronDown size={14} className={clsx('transition-transform duration-200', trainerOpen && 'rotate-180')} />
+          </div>
+          {trainerOpen && (
+            <div className="ml-[8px] pl-[6px] border-l border-[rgba(255,255,255,0.08)]">
+              {[
+                { label: 'Trainer Stats', icon: BarChart3, path: '/trainers' },
+                { label: 'Analytics', icon: Trophy, path: '/analytics' },
+              ].map(({ label, icon: Icon, path }) => {
+                const active = location.pathname === path;
+                return (
+                  <div
+                    key={path}
+                    onClick={() => navigate(path)}
+                    className={clsx(
+                      'flex items-center gap-[9px] rounded-[11px] px-[10px] py-[8px] text-[12.5px] font-medium cursor-pointer transition-all duration-150 mb-[1px] border border-transparent',
+                      active
+                        ? 'text-[#FF7087] border-[rgba(255,55,95,0.18)] bg-gradient-to-br from-[rgba(255,55,95,0.12)] to-[rgba(255,55,95,0.05)]'
+                        : 'text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)]',
+                    )}
+                  >
+                    <Icon size={14} className={clsx('shrink-0', active ? 'opacity-100' : 'opacity-50')} />
+                    <span className="flex-1">{label}</span>
+                  </div>
+                );
+              })}
+              <div
+                onClick={() => onAddTrainer?.()}
+                className="flex items-center gap-[9px] rounded-[11px] px-[10px] py-[8px] text-[12.5px] font-medium cursor-pointer transition-all duration-150 mb-[1px] border border-dashed border-[rgba(255,55,95,0.2)] text-[var(--aurora-red)] hover:bg-[rgba(255,55,95,0.08)] hover:text-[#FF7087]"
+              >
+                <Plus size={14} className="shrink-0" />
+                <span className="flex-1">Add Trainer</span>
+              </div>
+            </div>
+          )}
+        </div>
       </nav>
 
       <div className="border-t border-[var(--border)] px-[10px] py-[14px]">

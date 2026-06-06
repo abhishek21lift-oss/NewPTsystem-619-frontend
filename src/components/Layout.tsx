@@ -5,6 +5,7 @@ import Header from './Header';
 import StatusBar from './StatusBar';
 import CommandPalette from './CommandPalette';
 import AddClientModal from './AddClientModal';
+import AddTrainerModal from './AddTrainerModal';
 
 function getDateSubtitle() {
   const d = new Date();
@@ -42,6 +43,7 @@ export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const page = titles[location.pathname] || titles['/'];
   const [addClientOpen, setAddClientOpen] = useState(false);
+  const [addTrainerOpen, setAddTrainerOpen] = useState(false);
   const [notifOpen, setNotifOpen] = useState(false);
 
   return (
@@ -53,7 +55,7 @@ export default function Layout({ children }: LayoutProps) {
             'radial-gradient(ellipse 800px 600px at 10% 0%, rgba(255,59,48,0.06) 0%, transparent 60%), radial-gradient(ellipse 600px 600px at 90% 100%, rgba(10,132,255,0.05) 0%, transparent 55%)',
         }}
       />
-      <Sidebar />
+      <Sidebar onAddTrainer={() => setAddTrainerOpen(true)} />
       <main className="ml-[var(--sidebar-w)] min-h-screen">
         <Header
           title={page.title}
@@ -70,6 +72,7 @@ export default function Layout({ children }: LayoutProps) {
       <StatusBar />
       <CommandPalette />
       <AddClientModal open={addClientOpen} onClose={() => setAddClientOpen(false)} onSuccess={() => {}} />
+      <AddTrainerModal open={addTrainerOpen} onClose={() => setAddTrainerOpen(false)} onSuccess={() => {}} />
     </div>
   );
 }
