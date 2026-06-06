@@ -34,6 +34,14 @@ export const api = {
   // Trainers
   getTrainers: () => request<any[]>('/trainers'),
   getTrainerStats: (id: string) => request<any>(`/trainers/${id}/stats`),
+  createTrainer: (data: any) => request<any>('/trainers', { method: 'POST', body: JSON.stringify(data) }),
+
+  // Membership Plans
+  getMembershipPlans: () => request<any[]>('/membership-plans'),
+  getMembershipPlan: (id: string) => request<any>(`/membership-plans/${id}`),
+  createMembershipPlan: (data: any) => request<any>('/membership-plans', { method: 'POST', body: JSON.stringify(data) }),
+  updateMembershipPlan: (id: string, data: any) => request<any>(`/membership-plans/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+  deleteMembershipPlan: (id: string) => request<any>(`/membership-plans/${id}`, { method: 'DELETE' }),
 
   // Enrollments
   getEnrollments: (params?: string) => request<any>(`/enrollments${params ? `?${params}` : ''}`),

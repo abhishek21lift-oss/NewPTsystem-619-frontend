@@ -10,6 +10,7 @@ import Trainers from './pages/Trainers';
 import Analytics from './pages/Analytics';
 import Schedule from './pages/Schedule';
 import Forecast from './pages/Forecast';
+import MembershipPlans from './pages/MembershipPlans';
 
 export default function App() {
   return (
@@ -25,6 +26,7 @@ export default function App() {
         <Route path="/analytics" element={<Analytics />} />
         <Route path="/schedule" element={<Schedule />} />
         <Route path="/forecast" element={<Forecast />} />
+        <Route path="/membership" element={<MembershipPlans />} />
       </Routes>
     </Layout>
   );

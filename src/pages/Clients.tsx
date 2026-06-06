@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { api } from '../lib/api';
 import { GlassCard, CardHeader, LoadingSpinner, fmt, TrainerTag, StatusBadge } from '../components/Charts';
+import ClientDetail from '../components/ClientDetail';
 
 export default function Clients() {
   const [clients, setClients] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
+  const [selectedClient, setSelectedClient] = useState<any>(null);
 
   useEffect(() => {
     api.getClients().then((d: any) => setClients(d.data || d || [])).catch(console.error).finally(() => setLoading(false));
@@ -57,7 +59,9 @@ export default function Clients() {
                 const status = e.status || 'expired';
                 const days = end ? Math.ceil((new Date(end).getTime() - Date.now()) / 86400000) : 0;
                 return (
-                  <tr key={c.id} className="cursor-pointer transition-colors hover:[&_td]:bg-[rgba(255,255,255,0.03)]">
+                  <tr key={c.id} onClick={() => setSelectedClient(c)}
+                    className="cursor-pointer transition-colors hover:[&_td]:bg-[rgba(255,255,255,0.03)]"
+                  >
                     <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)] font-mono text-[10.5px] text-[var(--text-tertiary)]">{c.display_id}</td>
                     <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)] font-bold text-[var(--text-primary)]">{c.full_name}</td>
                     <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)]">{c.gender === 'Male' ? '👨' : '👩'} {c.gender}</td>
@@ -79,6 +83,7 @@ export default function Clients() {
           </table>
         </div>
       </GlassCard>
+      <ClientDetail client={selectedClient} open={!!selectedClient} onClose={() => setSelectedClient(null)} />
     </div>
   );
 }

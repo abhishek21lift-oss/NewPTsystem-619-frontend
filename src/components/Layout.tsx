@@ -1,8 +1,10 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import StatusBar from './StatusBar';
+import CommandPalette from './CommandPalette';
+import AddClientModal from './AddClientModal';
 
 function getDateSubtitle() {
   const d = new Date();
@@ -29,6 +31,7 @@ const titles: Record<string, { title: string; subtitle: string }> = {
   '/analytics': { title: 'Studio Analytics', subtitle: 'AI-powered insights' },
   '/schedule': { title: 'Schedule & Sessions', subtitle: getScheduleSubtitle() },
   '/forecast': { title: 'Revenue Forecast', subtitle: '6-month projection' },
+  '/membership': { title: 'Membership Plans', subtitle: 'Manage subscription packages' },
 };
 
 interface LayoutProps {
@@ -38,6 +41,8 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps) {
   const location = useLocation();
   const page = titles[location.pathname] || titles['/'];
+  const [addClientOpen, setAddClientOpen] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)' }}>
@@ -50,12 +55,21 @@ export default function Layout({ children }: LayoutProps) {
       />
       <Sidebar />
       <main className="ml-[var(--sidebar-w)] min-h-screen">
-        <Header title={page.title} subtitle={page.subtitle} />
+        <Header
+          title={page.title}
+          subtitle={page.subtitle}
+          onNewClient={() => setAddClientOpen(true)}
+          notifOpen={notifOpen}
+          onNotifToggle={() => setNotifOpen(o => !o)}
+          onNotifClose={() => setNotifOpen(false)}
+        />
         <div className="px-[30px] pb-[44px] pt-[26px]">
           {children}
         </div>
       </main>
       <StatusBar />
+      <CommandPalette />
+      <AddClientModal open={addClientOpen} onClose={() => setAddClientOpen(false)} onSuccess={() => {}} />
     </div>
   );
 }

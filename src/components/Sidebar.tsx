@@ -34,6 +34,9 @@ const navItems: { section: string; items: NavItem[] }[] = [
     { label: 'Schedule', icon: Calendar, path: '/schedule' },
     { label: 'Forecast', icon: TrendingUp, path: '/forecast' },
   ]},
+  { section: 'Membership', items: [
+    { label: 'Membership Plans', icon: Bell, path: '/membership', new: true },
+  ]},
 ];
 
 export default function Sidebar() {
