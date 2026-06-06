@@ -49,14 +49,10 @@ export default function Sidebar() {
     >
       <div className="border-b border-[var(--border)] px-[18px] py-[22px]">
         <div className="flex items-center gap-[11px]">
-          <div className="flex h-10 w-10 items-center justify-center rounded-[12px] font-extrabold text-sm text-white"
-            style={{
-              background: 'linear-gradient(145deg, #FF375F, #CC1E3A)',
-              boxShadow: '0 8px 24px rgba(255,55,95,0.45), inset 0 1px 0 rgba(255,255,255,0.25)',
-            }}
-          >
-            619
-          </div>
+          <img src="/logo.png" alt="619 Fitness"
+            className="h-10 w-10 rounded-[12px] object-cover"
+            style={{ boxShadow: '0 8px 24px rgba(255,55,95,0.45)' }}
+          />
           <div>
             <div className="text-sm font-bold tracking-tight">619 Fitness</div>
             <div className="text-[10.5px] text-[var(--text-tertiary)]">Studio Management OS</div>
