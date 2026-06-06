@@ -134,7 +134,7 @@ export function GlassCard({ children, className = '', hoverable = true }: {
 }
 
 export function CardHeader({ title, subtitle, action }: {
-  title: string; subtitle?: string; action?: React.ReactNode;
+  title: React.ReactNode; subtitle?: string; action?: React.ReactNode;
 }) {
   return (
     <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-[13px]">
