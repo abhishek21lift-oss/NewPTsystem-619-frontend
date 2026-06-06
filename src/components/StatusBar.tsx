@@ -26,8 +26,8 @@ export default function StatusBar() {
         <div className="h-[5px] w-[5px] rounded-full bg-[var(--green)]" style={{ boxShadow: '0 0 4px var(--green)' }} />
         System Online
       </div>
-      <span>619 Fitness Studio · Jaipur</span>
-      <span>v2.0 Premium</span>
+      <span>619 Fitness Studio · Lucknow</span>
+      <span>v3.0 Aurora Premium</span>
       <span className="ml-auto">{time}</span>
     </div>
   );

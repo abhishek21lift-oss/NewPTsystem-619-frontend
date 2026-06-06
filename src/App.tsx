@@ -1,32 +1,30 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
-import Dashboard from './pages/Dashboard';
-
-function PlaceholderPage({ title }: { title: string }) {
-  return (
-    <div className="flex items-center justify-center py-20 text-[var(--text-tertiary)]">
-      <div className="text-center">
-        <div className="text-[24px] font-bold" style={{ color: 'var(--text-secondary)' }}>{title}</div>
-        <div className="mt-2 text-[13px]">Coming soon with full data integration</div>
-      </div>
-    </div>
-  );
-}
+import Overview from './pages/Overview';
+import Clients from './pages/Clients';
+import ActiveClients from './pages/ActiveClients';
+import Revenue from './pages/Revenue';
+import Payouts from './pages/Payouts';
+import BalanceSheet from './pages/BalanceSheet';
+import Trainers from './pages/Trainers';
+import Analytics from './pages/Analytics';
+import Schedule from './pages/Schedule';
+import Forecast from './pages/Forecast';
 
 export default function App() {
   return (
     <Layout>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/clients" element={<PlaceholderPage title="All Clients" />} />
-        <Route path="/active" element={<PlaceholderPage title="Active Clients" />} />
-        <Route path="/revenue" element={<PlaceholderPage title="Revenue Analysis" />} />
-        <Route path="/payouts" element={<PlaceholderPage title="Trainer Payouts" />} />
-        <Route path="/balance" element={<PlaceholderPage title="Balance Sheet" />} />
-        <Route path="/trainers" element={<PlaceholderPage title="Trainer Performance" />} />
-        <Route path="/analytics" element={<PlaceholderPage title="Studio Analytics" />} />
-        <Route path="/schedule" element={<PlaceholderPage title="Schedule & Sessions" />} />
-        <Route path="/forecast" element={<PlaceholderPage title="Revenue Forecast" />} />
+        <Route path="/" element={<Overview />} />
+        <Route path="/clients" element={<Clients />} />
+        <Route path="/active" element={<ActiveClients />} />
+        <Route path="/revenue" element={<Revenue />} />
+        <Route path="/payouts" element={<Payouts />} />
+        <Route path="/balance" element={<BalanceSheet />} />
+        <Route path="/trainers" element={<Trainers />} />
+        <Route path="/analytics" element={<Analytics />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/forecast" element={<Forecast />} />
       </Routes>
     </Layout>
   );

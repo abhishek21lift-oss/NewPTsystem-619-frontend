@@ -25,7 +25,7 @@ export default function Header({ title, subtitle, onSearch }: HeaderProps) {
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-tertiary)]" />
           <input
             type="text"
-            placeholder="Search..."
+            placeholder="Search… ⌘K"
             className="w-[200px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.05)] px-[14px] py-[8px] pl-[30px] text-xs text-[var(--text-secondary)] placeholder:text-[var(--text-tertiary)] transition-all focus:w-[240px] focus:border-[rgba(255,59,48,0.4)] focus:bg-[rgba(255,255,255,0.07)] focus:text-[var(--text-primary)] focus:outline-none"
             onChange={(e) => onSearch?.(e.target.value)}
           />
@@ -51,8 +51,8 @@ export default function Header({ title, subtitle, onSearch }: HeaderProps) {
         </button>
 
         <button
-          className="flex items-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF3B30] to-[#CC2936] px-[14px] py-[7px] text-xs font-semibold text-white transition-all hover:-translate-y-[1px] active:translate-y-0"
-          style={{ boxShadow: '0 4px 14px rgba(255,59,48,0.4), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+          className="flex items-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[14px] py-[7px] text-xs font-semibold text-white transition-all hover:-translate-y-[1px] active:translate-y-0"
+          style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.4), inset 0 1px 0 rgba(255,255,255,0.15)' }}
         >
           <Plus size={12} />
           New Client

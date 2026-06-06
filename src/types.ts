@@ -88,3 +88,52 @@ export interface DashboardData {
   monthly_revenue: { month: string; rev: number }[];
   recent_activities: Activity[];
 }
+
+export interface TrainerBreakdown {
+  id: string;
+  full_name: string;
+  short_code: string;
+  initials: string;
+  total_clients: number;
+  total_revenue: number;
+  commission: number;
+}
+
+export interface PlanDistribution {
+  id: string;
+  name: string;
+  duration: string;
+  months_count: number;
+  enrollments: { count: number }[];
+  enrollment_count?: number;
+}
+
+export interface OutstandingBalance {
+  client_name: string;
+  display_id: string;
+  plan_name: string;
+  total_charged: number;
+  total_paid: number;
+  balance: number;
+  days_remaining: number;
+  enrollment_status: string;
+  trainer_name: string;
+  trainer_code: string;
+}
+
+export interface ForecastData {
+  forecast: { month: string; revenue: number }[];
+  total_6month: number;
+  active_enrollments_count: number;
+}
+
+export interface GenderDistribution {
+  gender: string;
+  count: number;
+}
+
+export interface WeeklySummary {
+  daily_counts: number[];
+  by_trainer: Record<string, number>;
+  total_sessions: number;
+}

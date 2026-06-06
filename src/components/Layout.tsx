@@ -4,8 +4,22 @@ import Sidebar from './Sidebar';
 import Header from './Header';
 import StatusBar from './StatusBar';
 
+function getDateSubtitle() {
+  const d = new Date();
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${days[d.getDay()]} ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+function getScheduleSubtitle() {
+  const d = new Date();
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  return `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()} · ${days[d.getDay()]}`;
+}
+
 const titles: Record<string, { title: string; subtitle: string }> = {
-  '/': { title: 'Dashboard Overview', subtitle: '619 Fitness Studio · Jaipur' },
+  '/': { title: 'Dashboard Overview', subtitle: `619 Fitness Studio · Lucknow · ${getDateSubtitle()}` },
   '/clients': { title: 'All Clients', subtitle: '67 unique clients · Latest package per client shown' },
   '/active': { title: 'Active Clients', subtitle: '23 clients currently active' },
   '/revenue': { title: 'Revenue Analysis', subtitle: 'Total studio earnings per month' },
@@ -13,7 +27,7 @@ const titles: Record<string, { title: string; subtitle: string }> = {
   '/balance': { title: 'Balance Sheet', subtitle: 'Outstanding payment records' },
   '/trainers': { title: 'Trainer Performance', subtitle: 'Leaderboard & stats' },
   '/analytics': { title: 'Studio Analytics', subtitle: 'AI-powered insights' },
-  '/schedule': { title: 'Schedule & Sessions', subtitle: 'April 10, 2026 · Thursday' },
+  '/schedule': { title: 'Schedule & Sessions', subtitle: getScheduleSubtitle() },
   '/forecast': { title: 'Revenue Forecast', subtitle: '6-month projection' },
 };
 

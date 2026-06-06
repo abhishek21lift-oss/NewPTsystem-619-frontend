@@ -48,8 +48,8 @@ export default function Sidebar() {
         <div className="flex items-center gap-[11px]">
           <div className="flex h-10 w-10 items-center justify-center rounded-[12px] font-extrabold text-sm text-white"
             style={{
-              background: 'linear-gradient(145deg, #FF3B30, #CC2936)',
-              boxShadow: '0 6px 20px rgba(255,59,48,0.4), inset 0 1px 0 rgba(255,255,255,0.2)',
+              background: 'linear-gradient(145deg, #FF375F, #CC1E3A)',
+              boxShadow: '0 8px 24px rgba(255,55,95,0.45), inset 0 1px 0 rgba(255,255,255,0.25)',
             }}
           >
             619
@@ -58,6 +58,11 @@ export default function Sidebar() {
             <div className="text-sm font-bold tracking-tight">619 Fitness</div>
             <div className="text-[10.5px] text-[var(--text-tertiary)]">Studio Management OS</div>
           </div>
+        </div>
+        <div className="mt-[11px] flex gap-[5px]">
+          <span className="mini-badge mb-live">● LIVE</span>
+          <span className="mini-badge mb-jpr">Lucknow</span>
+          <span className="mini-badge mb-k11">K11</span>
         </div>
       </div>
 
@@ -76,22 +81,18 @@ export default function Sidebar() {
                   className={clsx(
                     'flex items-center gap-[9px] rounded-[11px] px-[10px] py-[9px] text-[13px] font-medium cursor-pointer transition-all duration-150 mb-[2px] border border-transparent',
                     active
-                      ? 'text-[#FF6B63] border-[rgba(255,59,48,0.2)]'
+                      ? 'text-[#FF7087] border-[rgba(255,55,95,0.22)]'
                       : 'text-[var(--text-secondary)] hover:bg-surface hover:text-[var(--text-primary)]',
-                    active && 'bg-gradient-to-br from-[rgba(255,59,48,0.15)] to-[rgba(255,59,48,0.08)]',
+                    active && 'bg-gradient-to-br from-[rgba(255,55,95,0.16)] to-[rgba(255,55,95,0.07)]',
                   )}
                 >
                   <Icon size={16} className={clsx('shrink-0', active ? 'opacity-100' : 'opacity-65')} />
                   <span className="flex-1">{label}</span>
                   {badge && (
-                    <span className="min-w-[18px] rounded-full bg-gradient-to-r from-[#FF3B30] to-[#FF6B63] px-[7px] py-[2px] text-center text-[9.5px] font-bold text-white shadow-[0_2px_6px_rgba(255,59,48,0.35)]">
-                      {badge}
-                    </span>
+                    <span className="nav-pill pill-red">{badge}</span>
                   )}
                   {isNew && (
-                    <span className="rounded-full bg-gradient-to-r from-[#BF5AF2] to-[#9B3BD8] px-[6px] py-[2px] text-[9px] font-bold text-white">
-                      NEW
-                    </span>
+                    <span className="nav-pill pill-purple">AI</span>
                   )}
                 </div>
               );
@@ -104,8 +105,8 @@ export default function Sidebar() {
         <div className="flex items-center gap-[10px] rounded-[var(--radius-sm)] border border-[var(--border)] bg-[var(--surface)] px-[10px] py-[9px] cursor-pointer hover:bg-[var(--surface-hover)] transition-all">
           <div className="flex h-[34px] w-[34px] shrink-0 items-center justify-center rounded-full font-extrabold text-xs"
             style={{
-              background: 'linear-gradient(145deg, #FF3B30, #8B0000)',
-              boxShadow: '0 3px 10px rgba(255,59,48,0.35)',
+              background: 'linear-gradient(145deg, #FF375F, #8B0022)',
+              boxShadow: '0 4px 12px rgba(255,55,95,0.4)',
             }}
           >
             AK
