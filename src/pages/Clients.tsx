@@ -61,7 +61,8 @@ export default function Clients() {
             </thead>
             <tbody>
               {filtered.map((c, i) => {
-                const e = c.enrollments?.[0] || {};
+                const enrollments = (c.enrollments || []).slice().sort((a: any, b: any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
+                const e = enrollments[0] || {};
                 const charged = e.total_charged || 0;
                 const paid = e.payments?.reduce((s: number, p: any) => s + Number(p.amount), 0) || 0;
                 const balance = charged - paid;

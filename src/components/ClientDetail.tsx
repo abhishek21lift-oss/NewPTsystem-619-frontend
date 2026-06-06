@@ -9,14 +9,15 @@ interface Props {
 
 export default function ClientDetail({ client, open, onClose }: Props) {
   if (!client) return null;
-  const e = client.enrollments?.[0] || {};
+  const enrollments = (client.enrollments || []).slice().sort((a: any, b: any) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime());
+  const e = enrollments[0] || {};
   const charged = e.total_charged || 0;
   const paid = e.payments?.reduce((s: number, p: any) => s + Number(p.amount), 0) || 0;
   const balance = charged - paid;
   const days = e.end_date ? Math.ceil((new Date(e.end_date).getTime() - Date.now()) / 86400000) : 0;
 
   return (
-    <Modal open={open} onClose={onClose} maxWidth="480px">
+    <Modal open={open} onClose={onClose} maxWidth="520px">
       <div>
         <div
           className="rounded-t-[16px] px-[28px] pb-[28px] pt-[32px] text-white"
@@ -44,7 +45,7 @@ export default function ClientDetail({ client, open, onClose }: Props) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-[10px] px-[28px] py-[20px]">
+        <div className="grid grid-cols-2 gap-[10px] px-[28px] py-[16px]">
           {[
             ['Package', e.membership_plans?.duration || '—'],
             ['Trainer', e.trainers?.short_code ? TrainerTag({ trainer: e.trainers.short_code }) : '—'],
@@ -61,6 +62,33 @@ export default function ClientDetail({ client, open, onClose }: Props) {
             </div>
           ))}
         </div>
+
+        {enrollments.length > 1 && (
+          <div className="border-t border-[var(--border)] px-[28px] py-[16px]">
+            <div className="mb-[10px] text-[9.5px] font-bold uppercase tracking-[0.6px] text-[var(--text-tertiary)]">Enrollment History ({enrollments.length} total)</div>
+            <div className="flex flex-col gap-[6px]">
+              {enrollments.map((enr: any, i: number) => {
+                const enrPaid = enr.payments?.reduce((s: number, p: any) => s + Number(p.amount), 0) || 0;
+                return (
+                  <div key={enr.id || i} className="flex items-center gap-[10px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.02)] px-[14px] py-[10px] text-[11.5px]">
+                    <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full text-[10px] font-bold" style={{ background: i === 0 ? 'rgba(255,55,95,0.2)' : 'rgba(255,255,255,0.06)', color: i === 0 ? '#FF7087' : 'var(--text-tertiary)' }}>{i + 1}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-[6px]">
+                        <span className="font-semibold text-[var(--text-primary)]">{enr.membership_plans?.duration || '—'}</span>
+                        <StatusBadge status={enr.status || 'expired'} />
+                      </div>
+                      <div className="mt-[1px] text-[10.5px] text-[var(--text-tertiary)]">{enr.trainers?.short_code || '—'} · {enr.start_date} → {enr.end_date}</div>
+                    </div>
+                    <div className="text-right shrink-0">
+                      <div className="font-bold" style={{ color: 'var(--warning)' }}>{fmt(enr.total_charged)}</div>
+                      <div className="text-[10px] text-[var(--text-tertiary)]">paid {fmt(enrPaid)}</div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
 
         <div className="flex gap-[8px] border-t border-[var(--border)] px-[28px] py-[16px]">
           <a href={`https://wa.me/${client.phone}`} target="_blank" rel="noopener noreferrer"
