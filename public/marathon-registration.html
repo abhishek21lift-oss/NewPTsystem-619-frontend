@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>619 FITNESS STUDIO RE-OPENING MARATHON 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    background: linear-gradient(180deg, #ffffff 0%, #f5f5f7 100%);
+    padding: 56px 20px 36px;
+    text-align: center;
+    border-bottom: 1px solid #e6e6e8;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: #007AFF;
+    color: #fff;
+    padding: 5px 18px;
+    border-radius: 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero h1 {
+    font-size: clamp(26px, 4.5vw, 42px);
+    font-weight: 700;
+    color: #1d1d1f;
+    margin-bottom: 6px;
+    line-height: 1.15;
+    letter-spacing: -0.5px;
+  }
+  .hero .subtitle {
+    font-size: 15px;
+    color: #86868b;
+    font-weight: 400;
+    margin-bottom: 20px;
+  }
+  .event-meta {
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 13px;
+    color: #6e6e73;
+  }
+  .event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .event-meta .icon { font-size: 16px; }
+  .benefits-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  .benefits-bar .pill {
+    background: #f0f0f2;
+    color: #515154;
+    padding: 5px 13px;
+    border-radius: 16px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .container { max-width: 720px; margin: 0 auto; padding: 28px 16px 56px; }
+  .section {
+    background: #ffffff;
+    border: 1px solid #e6e6e8;
+    border-radius: 14px;
+    padding: 26px 22px;
+    margin-bottom: 16px;
+  }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #f0f0f2;
+  }
+  .section-number {
+    width: 28px;
+    height: 28px;
+    background: #f0f0f2;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: #515154;
+    flex-shrink: 0;
+  }
+  .section-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #1d1d1f;
+  }
+  .section-desc {
+    font-size: 11px;
+    color: #86868b;
+    margin-left: auto;
+  }
+  .field-group { margin-bottom: 18px; }
+  .field-group:last-child { margin-bottom: 0; }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #1d1d1f;
+    margin-bottom: 5px;
+  }
+  label .required {
+    color: #FF3B30;
+    margin-left: 2px;
+  }
+  label .optional {
+    color: #86868b;
+    font-weight: 400;
+    font-size: 11px;
+    margin-left: 4px;
+  }
+  input[type="text"],
+  input[type="tel"],
+  input[type="email"],
+  input[type="number"],
+  input[type="date"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px 13px;
+    background: #ffffff;
+    border: 1px solid #d2d2d7;
+    border-radius: 10px;
+    color: #1d1d1f;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.15s;
+    outline: none;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    border-color: #007AFF;
+    box-shadow: 0 0 0 3px rgba(0,122,255,0.12);
+  }
+  input.error, select.error { border-color: #FF3B30; }
+  select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2386868b' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; }
+  textarea { resize: vertical; min-height: 56px; }
+  .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px; }
+  .radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    background: #fafafa;
+    border: 1px solid #e6e6e8;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 13px;
+    color: #515154;
+    font-weight: 400;
+  }
+  .radio-label:hover, .checkbox-label:hover {
+    border-color: #b3b3b8;
+    background: #f5f5f5;
+  }
+  .radio-label input, .checkbox-label input { display: none; }
+  .radio-label:has(input:checked), .checkbox-label:has(input:checked) {
+    background: #f0f7ff;
+    border-color: #007AFF;
+    color: #1d1d1f;
+  }
+  .radio-label .dot, .checkbox-label .check {
+    width: 18px; height: 18px;
+    border: 2px solid #c7c7cc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+  .checkbox-label .check { border-radius: 4px; }
+  .radio-label:has(input:checked) .dot,
+  .checkbox-label:has(input:checked) .check {
+    border-color: #007AFF;
+    background: #007AFF;
+  }
+  .radio-label:has(input:checked) .dot::after {
+    content: '';
+    width: 6px; height: 6px;
+    background: #fff;
+    border-radius: 50%;
+  }
+  .checkbox-label:has(input:checked) .check::after {
+    content: '✓';
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .conditional { display: none; }
+  .conditional.show { display: block; }
+  .error-msg {
+    color: #FF3B30;
+    font-size: 12px;
+    margin-top: 3px;
+    display: none;
+  }
+  .error-msg.show { display: block; }
+  .submit-section {
+    text-align: center;
+    padding-top: 4px;
+  }
+  .btn-submit {
+    background: #007AFF;
+    color: #fff;
+    border: none;
+    padding: 13px 44px;
+    font-size: 15px;
+    font-weight: 500;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+    letter-spacing: 0;
+  }
+  .btn-submit:hover {
+    background: #0066D6;
+  }
+  .btn-submit:active {
+    transform: scale(0.97);
+  }
+  .btn-submit:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .thankyou {
+    display: none;
+    text-align: center;
+    padding: 48px 20px;
+  }
+  .thankyou.show { display: block; }
+  .thankyou .checkmark {
+    width: 72px; height: 72px;
+    background: #34C759;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 32px;
+    color: #fff;
+  }
+  .thankyou h2 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #1d1d1f;
+    margin-bottom: 10px;
+  }
+  .thankyou p { color: #6e6e73; line-height: 1.6; margin-bottom: 6px; font-size: 14px; }
+  .thankyou .contact { margin-top: 20px; padding: 18px; background: #fafafa; border-radius: 12px; border: 1px solid #e6e6e8; }
+  .form-hidden { display: none; }
+  .hint { font-size: 11px; color: #86868b; margin-top: 3px; }
+  ::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 0.5; }
+  @media (max-width: 600px) {
+    .container { padding: 16px 12px 40px; }
+    .section { padding: 20px 14px; }
+    .event-meta { gap: 10px; flex-direction: column; align-items: center; }
+    .radio-group { flex-direction: column; }
+    .radio-label, .checkbox-label { width: 100%; }
+    .benefits-bar .pill { font-size: 10px; padding: 4px 10px; }
+    .section-header { flex-wrap: wrap; }
+    .section-desc { margin-left: 0; width: 100%; margin-top: 2px; font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-content">
+    <img src="logo.png" alt="619 FITNESS STUDIO" style="height:96px;margin-bottom:16px;display:block;margin-left:auto;margin-right:auto">
+    <div class="hero-badge">Grand Re-Opening 2026</div>
+    <h1>619 FITNESS STUDIO<br>RE-OPENING MARATHON</h1>
+    <p class="subtitle">Register now for the ultimate community fitness experience</p>
+    <div class="event-meta">
+      <span><span class="icon">📅</span> 19 June 2026</span>
+      <span><span class="icon">📍</span> 619 FITNESS STUDIO</span>
+      <span><span class="icon">🏅</span> 3K / 5K / 10K Categories</span>
+    </div>
+    <div class="benefits-bar">
+      <span class="pill">🎖️ Finisher Certificate</span>
+      <span class="pill">💧 Refreshments</span>
+      <span class="pill">🆓 Free Fitness Assessment</span>
+      <span class="pill">🔥 Exclusive Membership Offers</span>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <form id="regForm" novalidate onsubmit="return handleSubmit(event)">
+
+    <!-- SECTION 1: PARTICIPANT DETAILS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">1</div>
+        <div class="section-title">Participant Details</div>
+        <div class="section-desc">Personal Information</div>
+      </div>
+
+      <div class="field-group">
+        <label for="fullName">Full Name <span class="required">*</span></label>
+        <input type="text" id="fullName" name="fullName" required>
+        <div class="error-msg" id="fullName-error">Please enter your full name</div>
+      </div>
+
+      <div class="field-group">
+        <label>Gender <span class="required">*</span></label>
+        <div class="radio-group" id="gender-group">
+          <label class="radio-label"><input type="radio" name="gender" value="Male" required><span class="dot"></span><span>Male</span></label>
+          <label class="radio-label"><input type="radio" name="gender" value="Female"><span class="dot"></span><span>Female</span></label>
+          <label class="radio-label"><input type="radio" name="gender" value="Prefer Not to Say"><span class="dot"></span><span>Prefer Not to Say</span></label>
+        </div>
+        <div class="error-msg" id="gender-error">Please select your gender</div>
+      </div>
+
+      <div class="field-group">
+        <label for="dob">Date of Birth <span class="required">*</span></label>
+        <input type="date" id="dob" name="dob" required onchange="calcAge()">
+        <div class="error-msg" id="dob-error">Please enter your date of birth</div>
+      </div>
+
+      <div class="field-group">
+        <label for="age">Age <span class="required">*</span></label>
+        <input type="number" id="age" name="age" min="1" max="120" required readonly style="background:#f5f5f7;cursor:not-allowed;color:#86868b;">
+        <div class="error-msg" id="age-error">Age is required</div>
+      </div>
+
+      <div class="field-group">
+        <label for="mobile">Mobile Number <span class="required">*</span></label>
+        <input type="tel" id="mobile" name="mobile" required pattern="[0-9]{7,15}">
+        <div class="error-msg" id="mobile-error">Please enter a valid mobile number</div>
+      </div>
+
+      <div class="field-group">
+        <label for="whatsapp">WhatsApp Number <span class="required">*</span></label>
+        <input type="tel" id="whatsapp" name="whatsapp" required pattern="[0-9]{7,15}">
+        <div class="error-msg" id="whatsapp-error">Please enter a valid WhatsApp number</div>
+      </div>
+
+      <div class="field-group">
+        <label for="email">Email Address <span class="optional">(optional)</span></label>
+        <input type="email" id="email" name="email">
+      </div>
+
+      <div class="field-group">
+        <label for="city">City / Area of Residence <span class="required">*</span></label>
+        <input type="text" id="city" name="city" required>
+        <div class="error-msg" id="city-error">Please enter your city or area</div>
+      </div>
+
+      <div class="field-group">
+        <label for="occupation">Occupation <span class="optional">(optional)</span></label>
+        <input type="text" id="occupation" name="occupation">
+      </div>
+    </div>
+
+    <!-- SECTION 2: EMERGENCY CONTACT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">2</div>
+        <div class="section-title">Emergency Contact</div>
+        <div class="section-desc">In case of emergency</div>
+      </div>
+
+      <div class="field-group">
+        <label for="emName">Emergency Contact Name <span class="required">*</span></label>
+        <input type="text" id="emName" name="emName" required>
+        <div class="error-msg" id="emName-error">Please enter emergency contact name</div>
+      </div>
+
+      <div class="field-group">
+        <label for="emNumber">Emergency Contact Number <span class="required">*</span></label>
+        <input type="tel" id="emNumber" name="emNumber" required pattern="[0-9]{7,15}">
+        <div class="error-msg" id="emNumber-error">Please enter a valid emergency contact number</div>
+      </div>
+
+      <div class="field-group">
+        <label for="emRelation">Relationship with Emergency Contact <span class="required">*</span></label>
+        <input type="text" id="emRelation" name="emRelation" required>
+        <div class="error-msg" id="emRelation-error">Please specify the relationship</div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: MARATHON PARTICIPATION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">3</div>
+        <div class="section-title">Marathon Participation</div>
+        <div class="section-desc">Event Details</div>
+      </div>
+
+      <div class="field-group">
+        <label>Select Marathon Category <span class="required">*</span></label>
+        <div class="radio-group" id="category-group">
+          <label class="radio-label"><input type="radio" name="category" value="3 KM Fun Run" required><span class="dot"></span><span>3 KM Fun Run</span></label>
+          <label class="radio-label"><input type="radio" name="category" value="5 KM Fitness Run"><span class="dot"></span><span>5 KM Fitness Run</span></label>
+          <label class="radio-label"><input type="radio" name="category" value="10 KM Challenge Run"><span class="dot"></span><span>10 KM Challenge Run</span></label>
+        </div>
+        <div class="error-msg" id="category-error">Please select a marathon category</div>
+      </div>
+
+      <div class="field-group">
+        <label>T-Shirt Size <span class="required">*</span></label>
+        <div class="radio-group" id="tshirt-group">
+          <label class="radio-label"><input type="radio" name="tshirt" value="S" required><span class="dot"></span><span>S</span></label>
+          <label class="radio-label"><input type="radio" name="tshirt" value="M"><span class="dot"></span><span>M</span></label>
+          <label class="radio-label"><input type="radio" name="tshirt" value="L"><span class="dot"></span><span>L</span></label>
+          <label class="radio-label"><input type="radio" name="tshirt" value="XL"><span class="dot"></span><span>XL</span></label>
+          <label class="radio-label"><input type="radio" name="tshirt" value="XXL"><span class="dot"></span><span>XXL</span></label>
+        </div>
+        <div class="error-msg" id="tshirt-error">Please select a T-shirt size</div>
+      </div>
+
+      <div class="field-group">
+        <label>Have you participated in any marathon before?</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="priorMarathon" value="Yes" onchange="togglePrior(true)"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="priorMarathon" value="No" onchange="togglePrior(false)"><span class="dot"></span><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="field-group conditional" id="priorEventsField">
+        <label for="priorEvents">If Yes, please mention the event name(s).</label>
+        <textarea id="priorEvents" name="priorEvents" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- SECTION 4: HEALTH DECLARATION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">4</div>
+        <div class="section-title">Health Declaration</div>
+        <div class="section-desc">Medical Information</div>
+      </div>
+
+      <div class="field-group">
+        <label>Do you have any medical condition that organizers should be aware of? <span class="required">*</span></label>
+        <div class="radio-group" id="medCondition-group">
+          <label class="radio-label"><input type="radio" name="medCondition" value="Yes" required onchange="toggleMedCondition(true)"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="medCondition" value="No" required onchange="toggleMedCondition(false)"><span class="dot"></span><span>No</span></label>
+        </div>
+        <div class="error-msg" id="medCondition-error">Please answer this question</div>
+      </div>
+
+      <div class="field-group conditional" id="medConditionDetailField">
+        <label for="medConditionDetail">If Yes, please specify.</label>
+        <textarea id="medConditionDetail" name="medConditionDetail" rows="2"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label>Are you currently under any medication?</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="medication" value="Yes" onchange="toggleMedication(true)"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="medication" value="No" onchange="toggleMedication(false)"><span class="dot"></span><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="field-group conditional" id="medicationDetailField">
+        <label for="medicationDetail">If Yes, please specify.</label>
+        <textarea id="medicationDetail" name="medicationDetail" rows="2"></textarea>
+      </div>
+
+      <div class="field-group">
+        <label for="bloodGroup">Blood Group</label>
+        <select id="bloodGroup" name="bloodGroup">
+          <option value="">-- Select Blood Group --</option>
+          <option value="A+">A+</option>
+          <option value="A-">A-</option>
+          <option value="B+">B+</option>
+          <option value="B-">B-</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB-</option>
+          <option value="O+">O+</option>
+          <option value="O-">O-</option>
+          <option value="Don't Know">Don't Know</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="checkbox-label" style="width:100%;padding:12px 16px">
+          <input type="checkbox" name="fitnessConfirm" id="fitnessConfirm" required>
+          <span class="check"></span>
+          <span style="font-size:13px;color:#515154">I confirm that I am physically fit to participate in this event. <span class="required">*</span></span>
+        </label>
+        <div class="error-msg" id="fitnessConfirm-error">You must confirm that you are physically fit</div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: FITNESS PROFILE -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">5</div>
+        <div class="section-title">Fitness Profile</div>
+        <div class="section-desc">Your Fitness Journey</div>
+      </div>
+
+      <div class="field-group">
+        <label for="fitnessGoal">What is your primary fitness goal?</label>
+        <select id="fitnessGoal" name="fitnessGoal">
+          <option value="">-- Select Goal --</option>
+          <option value="Weight Loss">Weight Loss</option>
+          <option value="Fat Loss">Fat Loss</option>
+          <option value="Muscle Gain">Muscle Gain</option>
+          <option value="Strength Training">Strength Training</option>
+          <option value="Powerlifting">Powerlifting</option>
+          <option value="CrossFit">CrossFit</option>
+          <option value="General Fitness">General Fitness</option>
+          <option value="Improve Stamina">Improve Stamina</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label>Are you currently a member of any gym?</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="gymMember" value="Yes" onchange="toggleGym(true)"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="gymMember" value="No" onchange="toggleGym(false)"><span class="dot"></span><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="field-group conditional" id="gymNameField">
+        <label for="gymName">If Yes, which gym?</label>
+        <input type="text" id="gymName" name="gymName">
+      </div>
+
+      <div class="field-group">
+        <label>Would you like a FREE fitness assessment at our new premium facility?</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="freeAssessment" value="Yes"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="freeAssessment" value="No"><span class="dot"></span><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Would you like information about our special re-opening membership offers?</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="membershipInfo" value="Yes"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="membershipInfo" value="No"><span class="dot"></span><span>No</span></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label>Are you interested in personal training services?</label>
+        <div class="radio-group">
+          <label class="radio-label"><input type="radio" name="personalTraining" value="Yes"><span class="dot"></span><span>Yes</span></label>
+          <label class="radio-label"><input type="radio" name="personalTraining" value="No"><span class="dot"></span><span>No</span></label>
+          <label class="radio-label"><input type="radio" name="personalTraining" value="Maybe"><span class="dot"></span><span>Maybe</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: MARKETING & REFERRAL -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">6</div>
+        <div class="section-title">Marketing &amp; Referral</div>
+        <div class="section-desc">How you found us</div>
+      </div>
+
+      <div class="field-group">
+        <label for="hearAbout">How did you hear about this event?</label>
+        <select id="hearAbout" name="hearAbout">
+          <option value="">-- Select --</option>
+          <option value="Instagram">Instagram</option>
+          <option value="Facebook">Facebook</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Existing Gym Member">Existing Gym Member</option>
+          <option value="Friend / Family">Friend / Family</option>
+          <option value="Poster / Banner">Poster / Banner</option>
+          <option value="Trainer Referral">Trainer Referral</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="referrerName">Name of the person who referred you (if applicable)</label>
+        <input type="text" id="referrerName" name="referrerName">
+      </div>
+    </div>
+
+    <!-- SECTION 7: CONSENT & WAIVER -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-number">7</div>
+        <div class="section-title">Consent &amp; Waiver</div>
+        <div class="section-desc">Legal &amp; Media</div>
+      </div>
+
+      <div class="field-group">
+        <label class="checkbox-label" style="width:100%;padding:14px 16px;align-items:flex-start">
+          <input type="checkbox" name="waiver" id="waiver" required>
+          <span class="check" style="margin-top:2px"></span>
+          <span style="font-size:12px;color:#6e6e73;line-height:1.5">
+            <strong style="color:#1d1d1f">Participation Waiver <span class="required">*</span></strong><br>
+            I voluntarily participate in the 619 FITNESS STUDIO RE-OPENING MARATHON 2026 at my own risk. I certify that I am medically fit and capable of participating. I release the organizers, sponsors, volunteers, and venue owners from any liability for injury, illness, accident, loss, or damage that may occur during or because of my participation.
+          </span>
+        </label>
+        <div class="error-msg" id="waiver-error">You must accept the participation waiver</div>
+      </div>
+
+      <div class="field-group">
+        <label class="checkbox-label" style="width:100%;padding:14px 16px;align-items:flex-start">
+          <input type="checkbox" name="mediaConsent" id="mediaConsent" required>
+          <span class="check" style="margin-top:2px"></span>
+          <span style="font-size:12px;color:#6e6e73;line-height:1.5">
+            <strong style="color:#1d1d1f">Photography &amp; Media Consent <span class="required">*</span></strong><br>
+            I grant permission to 619 FITNESS STUDIO to use photographs, videos, and recordings taken during the event for promotional, marketing, and social media purposes without compensation.
+          </span>
+        </label>
+        <div class="error-msg" id="mediaConsent-error">You must accept the media consent</div>
+      </div>
+    </div>
+
+    <!-- SUBMIT -->
+    <div class="section submit-section" style="border:none;background:none">
+      <button type="submit" class="btn-submit" id="submitBtn">🏃‍♂️ Register for Marathon</button>
+      <p style="color:#86868b;font-size:12px;margin-top:12px">By submitting, you agree to all terms above</p>
+    </div>
+
+  </form>
+
+  <!-- THANK YOU -->
+  <div class="thankyou" id="thankyou">
+    <div class="checkmark">✅</div>
+    <h2>Registration Submitted Successfully!</h2>
+    <p>Thank you for registering for the <strong>619 FITNESS STUDIO RE-OPENING MARATHON 2026</strong>.</p>
+    <p>We look forward to seeing you on <strong>19 June 2026</strong>.</p>
+    <p style="color:#6e6e73">Stay tuned for event updates, route details, reporting time, and exciting announcements regarding our new premium facility.</p>
+    <div class="contact">
+      <p style="color:#1d1d1f;font-weight:600">For assistance, contact:</p>
+      <p>📞 Coach Abhishek</p>
+      <p>📍 619 FITNESS STUDIO</p>
+      <p style="margin-top:12px;font-size:14px;color:#007AFF;font-weight:500">See you at the starting line! 🏃‍♂️🔥</p>
+    </div>
+    <button class="btn-submit" style="margin-top:24px" onclick="resetForm()">Register Another Person</button>
+  </div>
+</div>
+
+<script>
+  function calcAge() {
+    const dob = document.getElementById('dob').value;
+    if (!dob) { document.getElementById('age').value = ''; return; }
+    const birth = new Date(dob);
+    const today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    document.getElementById('age').value = age;
+  }
+
+  function togglePrior(val) {
+    document.getElementById('priorEventsField').classList.toggle('show', val);
+  }
+
+  function toggleMedCondition(val) {
+    document.getElementById('medConditionDetailField').classList.toggle('show', val);
+  }
+
+  function toggleMedication(val) {
+    document.getElementById('medicationDetailField').classList.toggle('show', val);
+  }
+
+  function toggleGym(val) {
+    document.getElementById('gymNameField').classList.toggle('show', val);
+  }
+
+  function getRadioValue(name) {
+    const el = document.querySelector(`input[name="${name}"]:checked`);
+    return el ? el.value : '';
+  }
+
+  function showError(id) {
+    const el = document.getElementById(id);
+    if (el) el.classList.add('show');
+  }
+
+  function clearErrors() {
+    document.querySelectorAll('.error-msg').forEach(e => e.classList.remove('show'));
+    document.querySelectorAll('input.error, select.error').forEach(e => e.classList.remove('error'));
+  }
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbylsHhw0-qqYGv0drSdKuwU79hRJRzkiwC8SPo6zxwpK9kDHLKdlLlqEKMW7Sw_GeZu/exec';
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    clearErrors();
+    let valid = true;
+
+    // Text inputs
+    const textFields = [
+      { id: 'fullName', err: 'fullName-error' },
+      { id: 'city', err: 'city-error' },
+      { id: 'emName', err: 'emName-error' },
+      { id: 'emRelation', err: 'emRelation-error' }
+    ];
+    textFields.forEach(f => {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim()) {
+        showError(f.err);
+        el.classList.add('error');
+        valid = false;
+      }
+    });
+
+    // Phone
+    const phoneFields = [
+      { id: 'mobile', err: 'mobile-error' },
+      { id: 'whatsapp', err: 'whatsapp-error' },
+      { id: 'emNumber', err: 'emNumber-error' }
+    ];
+    phoneFields.forEach(f => {
+      const el = document.getElementById(f.id);
+      if (!el.value.trim() || !/^[0-9]{7,15}$/.test(el.value.trim())) {
+        showError(f.err);
+        el.classList.add('error');
+        valid = false;
+      }
+    });
+
+    // Date of birth
+    const dob = document.getElementById('dob');
+    if (!dob.value) {
+      showError('dob-error');
+      dob.classList.add('error');
+      valid = false;
+    }
+
+    // Age (auto-calculated, should be populated)
+    const age = document.getElementById('age');
+    if (!age.value) {
+      showError('age-error');
+      valid = false;
+    }
+
+    // Radio groups (required)
+    if (!getRadioValue('gender')) { showError('gender-error'); valid = false; }
+    if (!getRadioValue('category')) { showError('category-error'); valid = false; }
+    if (!getRadioValue('tshirt')) { showError('tshirt-error'); valid = false; }
+    if (!getRadioValue('medCondition')) { showError('medCondition-error'); valid = false; }
+
+    // Checkboxes
+    if (!document.getElementById('fitnessConfirm').checked) { showError('fitnessConfirm-error'); valid = false; }
+    if (!document.getElementById('waiver').checked) { showError('waiver-error'); valid = false; }
+    if (!document.getElementById('mediaConsent').checked) { showError('mediaConsent-error'); valid = false; }
+
+    if (!valid) {
+      document.getElementById('submitBtn').textContent = '⚠️ Please Fix Errors';
+      setTimeout(() => { document.getElementById('submitBtn').textContent = '🏃‍♂️ Register for Marathon'; }, 3000);
+      return false;
+    }
+
+    const formData = {
+      fullName: document.getElementById('fullName').value.trim(),
+      gender: getRadioValue('gender'),
+      dob: document.getElementById('dob').value,
+      age: document.getElementById('age').value,
+      mobile: document.getElementById('mobile').value.trim(),
+      whatsapp: document.getElementById('whatsapp').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      city: document.getElementById('city').value.trim(),
+      occupation: document.getElementById('occupation').value.trim(),
+      emergencyContact: {
+        name: document.getElementById('emName').value.trim(),
+        number: document.getElementById('emNumber').value.trim(),
+        relationship: document.getElementById('emRelation').value.trim()
+      },
+      marathon: {
+        category: getRadioValue('category'),
+        tshirt: getRadioValue('tshirt'),
+        priorMarathon: getRadioValue('priorMarathon'),
+        priorEvents: document.getElementById('priorEvents').value.trim()
+      },
+      health: {
+        medicalCondition: getRadioValue('medCondition'),
+        medicalConditionDetail: document.getElementById('medConditionDetail').value.trim(),
+        medication: getRadioValue('medication'),
+        medicationDetail: document.getElementById('medicationDetail').value.trim(),
+        bloodGroup: document.getElementById('bloodGroup').value,
+        fitnessConfirmed: document.getElementById('fitnessConfirm').checked
+      },
+      fitness: {
+        goal: document.getElementById('fitnessGoal').value,
+        gymMember: getRadioValue('gymMember'),
+        gymName: document.getElementById('gymName').value.trim(),
+        freeAssessment: getRadioValue('freeAssessment'),
+        membershipInfo: getRadioValue('membershipInfo'),
+        personalTraining: getRadioValue('personalTraining')
+      },
+      marketing: {
+        hearAbout: document.getElementById('hearAbout').value,
+        referrerName: document.getElementById('referrerName').value.trim()
+      },
+      consent: {
+        waiver: document.getElementById('waiver').checked,
+        mediaConsent: document.getElementById('mediaConsent').checked
+      }
+    };
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ Submitting...';
+
+    try {
+      // Google Apps Script doesn't return CORS headers, so we use no-cors
+      // The body is JSON stringified but sent as text/plain (only format no-cors allows)
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        body: JSON.stringify(formData)
+      });
+    } catch (err) {
+      console.warn('Submission warning (may still have saved):', err);
+    }
+
+    btn.disabled = false;
+    document.getElementById('regForm').style.display = 'none';
+    document.getElementById('thankyou').classList.add('show');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    return false;
+  }
+
+  function resetForm() {
+    document.getElementById('regForm').reset();
+    document.getElementById('regForm').style.display = 'block';
+    document.getElementById('thankyou').classList.remove('show');
+    document.querySelectorAll('.conditional').forEach(el => el.classList.remove('show'));
+    clearErrors();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
