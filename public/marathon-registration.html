@@ -9,19 +9,27 @@
   html { scroll-behavior: smooth; }
 
   :root {
-    --accent: #0071E3;
-    --accent-hover: #0077ED;
-    --dark: #1D1D1F;
-    --text: #1D1D1F;
-    --text-secondary: #86868B;
-    --text-tertiary: #6E6E73;
-    --bg: #F5F5F7;
-    --card: #FFFFFF;
-    --card-border: rgba(0,0,0,0.06);
+    --accent: #FF6B35;
+    --accent-hover: #E85D2C;
+    --gradient: linear-gradient(135deg, #FF6B35, #FF2E63);
+    --gradient2: linear-gradient(135deg, #6C63FF, #FF6B35);
+    --dark: #1a1a2e;
+    --text: #2d2d3a;
+    --text-secondary: #6b6b80;
+    --bg: linear-gradient(135deg, #f5f0ff 0%, #fff0f5 50%, #f0f8ff 100%);
+    --card: #ffffff;
+    --card-border: rgba(0,0,0,0.08);
     --success: #30D158;
-    --radius: 14px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.04);
-    --shadow-hover: 0 4px 20px rgba(0,0,0,0.08);
+    --radius: 16px;
+    --shadow: 0 4px 24px rgba(0,0,0,0.06);
+    --shadow-hover: 0 8px 40px rgba(0,0,0,0.12);
+    --color-1: #FF6B35;
+    --color-2: #6C63FF;
+    --color-3: #FF2E63;
+    --color-4: #00C9A7;
+    --color-5: #FFD93D;
+    --color-6: #845EC2;
+    --color-7: #FF6B35;
   }
 
   body {
@@ -116,7 +124,7 @@
     border-radius: 4px;
     transition: background 0.4s;
   }
-  .progress-step.active { background: var(--accent); }
+  .progress-step.active { background: var(--gradient); }
   .progress-text {
     font-size: 12px;
     font-weight: 500;
@@ -138,7 +146,24 @@
     transition: box-shadow 0.3s, transform 0.3s;
     opacity: 0;
     transform: translateY(16px);
+    position: relative;
+    overflow: hidden;
   }
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+  }
+  .section[data-section="1"]::before { background: linear-gradient(90deg, #FF6B35, #FF8E53); }
+  .section[data-section="2"]::before { background: linear-gradient(90deg, #6C63FF, #8B83FF); }
+  .section[data-section="3"]::before { background: linear-gradient(90deg, #FF2E63, #FF6B9D); }
+  .section[data-section="4"]::before { background: linear-gradient(90deg, #00C9A7, #00E5C2); }
+  .section[data-section="5"]::before { background: linear-gradient(90deg, #FFD93D, #FFE66D); }
+  .section[data-section="6"]::before { background: linear-gradient(90deg, #845EC2, #B39DDB); }
+  .section[data-section="7"]::before { background: linear-gradient(90deg, #FF6B35, #FF2E63); }
   .section.visible {
     opacity: 1;
     transform: translateY(0);
@@ -154,18 +179,24 @@
     border-bottom: 1px solid var(--card-border);
   }
   .section-num {
-    width: 28px;
-    height: 28px;
-    background: var(--accent);
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 700;
     color: #fff;
     flex-shrink: 0;
   }
+  .section[data-section="1"] .section-num { background: linear-gradient(135deg, #FF6B35, #FF8E53); }
+  .section[data-section="2"] .section-num { background: linear-gradient(135deg, #6C63FF, #8B83FF); }
+  .section[data-section="3"] .section-num { background: linear-gradient(135deg, #FF2E63, #FF6B9D); }
+  .section[data-section="4"] .section-num { background: linear-gradient(135deg, #00C9A7, #00E5C2); }
+  .section[data-section="5"] .section-num { background: linear-gradient(135deg, #FFD93D, #FFE66D); color: #333; }
+  .section[data-section="6"] .section-num { background: linear-gradient(135deg, #845EC2, #B39DDB); }
+  .section[data-section="7"] .section-num { background: linear-gradient(135deg, #FF6B35, #FF2E63); }
   .section-title {
     font-size: 17px;
     font-weight: 600;
@@ -214,9 +245,9 @@
   textarea:focus {
     border-color: var(--accent);
     background: #fff;
-    box-shadow: 0 0 0 4px rgba(0,113,227,0.12);
+    box-shadow: 0 0 0 4px rgba(255,107,53,0.12);
   }
-  input.error, select.error { border-color: #FF453A; background: #FFF5F5; }
+  input.error, select.error { border-color: #FF2E63; background: #FFF0F5; }
   select {
     cursor: pointer;
     appearance: none;
@@ -247,7 +278,7 @@
   }
   .radio-label input, .checkbox-label input { display: none; }
   .radio-label:has(input:checked), .checkbox-label:has(input:checked) {
-    background: rgba(0,113,227,0.08);
+    background: rgba(255,107,53,0.08);
     border-color: var(--accent);
   }
   .radio-label .dot, .checkbox-label .check {
@@ -301,20 +332,22 @@
     padding: 8px 0 0;
   }
   .btn-submit {
-    background: var(--accent);
+    background: var(--gradient);
     color: #fff;
     border: none;
     padding: 16px 56px;
     font-size: 17px;
     font-weight: 600;
-    border-radius: 12px;
+    border-radius: 14px;
     cursor: pointer;
     transition: all 0.3s;
     font-family: inherit;
     position: relative;
+    box-shadow: 0 8px 30px rgba(255,107,53,0.35);
   }
   .btn-submit:hover {
-    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255,107,53,0.45);
   }
   .btn-submit:active { transform: scale(0.97); }
   .btn-submit:disabled {
@@ -369,19 +402,20 @@
   .btn-reset {
     background: transparent;
     color: var(--accent);
-    border: 1px solid var(--accent);
+    border: 2px solid var(--accent);
     padding: 12px 36px;
     font-size: 14px;
     font-weight: 600;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
     transition: all 0.3s;
     font-family: inherit;
     margin-top: 20px;
   }
   .btn-reset:hover {
-    background: var(--accent);
+    background: var(--gradient);
     color: #fff;
+    border-color: transparent;
   }
 
   /* ─── RESPONSIVE ─── */
@@ -730,7 +764,7 @@
       <p style="font-weight:600;color:var(--text)">For assistance, contact:</p>
       <p>📞 Coach Abhishek</p>
       <p>📍 619 FITNESS STUDIO</p>
-      <p style="margin-top:10px;color:#0071E3;font-weight:600">See you at the starting line! 🏃‍♂️🔥</p>
+      <p style="margin-top:10px;color:#FF6B35;font-weight:600">See you at the starting line! 🏃‍♂️🔥</p>
     </div>
     <button class="btn-reset" onclick="resetForm()">Register Another Person</button>
   </div>
