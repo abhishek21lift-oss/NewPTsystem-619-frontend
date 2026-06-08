@@ -69,17 +69,17 @@
   .hero-meta {
     display: flex;
     justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    gap: 8px;
     font-size: 14px;
     color: rgba(255,255,255,0.55);
+    flex-wrap: nowrap;
   }
   .hero-meta span {
     display: flex;
     align-items: center;
     gap: 6px;
     background: rgba(255,255,255,0.06);
-    padding: 8px 18px;
+    padding: 6px 14px;
     border-radius: 12px;
     backdrop-filter: blur(10px);
   }
@@ -385,14 +385,13 @@
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 600px) {
-    .hero { padding: 16px 16px 12px; }
+    .hero { padding: 4px 12px 4px; }
     .hero-logo { height: 140px; }
-    .hero-meta { gap: 8px; }
-    .hero-meta span { padding: 6px 12px; font-size: 12px; }
+    .hero-meta { gap: 6px; }
+    .hero-meta span { padding: 4px 8px; font-size: 11px; }
     .section { padding: 20px 16px; }
     .radio-group { flex-direction: column; }
     .radio-label, .checkbox-label { width: 100%; }
-    .benefits .pill { font-size: 10px; padding: 4px 10px; }
     .progress-bar { padding: 12px 14px; gap: 10px; }
     .btn-submit { width: 100%; padding: 16px 24px; }
   }
