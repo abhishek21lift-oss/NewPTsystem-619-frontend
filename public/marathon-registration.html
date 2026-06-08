@@ -69,21 +69,22 @@
   .hero-meta {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.55);
+    align-items: center;
+    gap: 0;
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
     flex-wrap: nowrap;
   }
   .hero-meta span {
     display: flex;
     align-items: center;
-    gap: 6px;
-    background: rgba(255,255,255,0.06);
-    padding: 6px 14px;
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+    gap: 5px;
+    padding: 0 10px;
   }
-  .hero-meta .icon { font-size: 16px; }
+  .hero-meta span + span {
+    border-left: 1px solid rgba(255,255,255,0.15);
+  }
+  .hero-meta .icon { font-size: 13px; }
 
   /* ─── PROGRESS BAR ─── */
   .progress-wrap {
@@ -388,7 +389,7 @@
     .hero { padding: 4px 12px 4px; }
     .hero-logo { height: 140px; }
     .hero-meta { gap: 6px; }
-    .hero-meta span { padding: 4px 8px; font-size: 11px; }
+    .hero-meta span { padding: 0 6px; font-size: 11px; }
     .section { padding: 20px 16px; }
     .radio-group { flex-direction: column; }
     .radio-label, .checkbox-label { width: 100%; }
