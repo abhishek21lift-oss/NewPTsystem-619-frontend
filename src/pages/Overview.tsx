@@ -258,11 +258,16 @@ export default function Overview() {
                   {act.icon || '📌'}
                 </div>
                 <div className="flex-1">
-                  <div className="text-[12.5px] font-medium leading-[1.5] text-[var(--text-secondary)]"
-                    dangerouslySetInnerHTML={{
-                      __html: (act.description || '').replace(/(₹[\d,]+)/g, '<strong style="color:var(--warning)">$1</strong>')
-                    }}
-                  />
+                  <div className="text-[12.5px] font-medium leading-[1.5] text-[var(--text-secondary)]">
+                    {(() => {
+                      const text = act.description || '';
+                      return text.split(/(₹[\d,]+)/g).map((part, i) =>
+                        /^₹[\d,]+$/.test(part)
+                          ? <strong key={i} style={{color: 'var(--warning)'}}>{part}</strong>
+                          : part
+                      );
+                    })()}
+                  </div>
                   <div className="mt-[2px] text-[10px] text-[var(--text-tertiary)]">{act.created_at ? new Date(act.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : ''}</div>
                 </div>
               </div>
