@@ -11,6 +11,7 @@ import Analytics from './pages/Analytics';
 import Schedule from './pages/Schedule';
 import Forecast from './pages/Forecast';
 import MembershipPlans from './pages/MembershipPlans';
+import ClientProfile from './pages/ClientProfile';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Overview />} />
         <Route path="/clients" element={<Clients />} />
+        <Route path="/clients/:id" element={<ClientProfile />} />
         <Route path="/active" element={<ActiveClients />} />
         <Route path="/revenue" element={<Revenue />} />
         <Route path="/payouts" element={<Payouts />} />
