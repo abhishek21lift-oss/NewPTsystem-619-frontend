@@ -28,20 +28,24 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
   const [selectedPlan, setSelectedPlan] = useState<any>(null);
   const [selectedTrainer, setSelectedTrainer] = useState<any>(null);
   const [paidAmount, setPaidAmount] = useState('');
+  const [discount, setDiscount] = useState('');
 
   useEffect(() => {
-    if (!open) { setStep(1); setName(''); setPhone(''); setGender('Male'); setSelectedPlan(null); setSelectedTrainer(null); setPaidAmount(''); return; }
+    if (!open) { setStep(1); setName(''); setPhone(''); setGender('Male'); setSelectedPlan(null); setSelectedTrainer(null); setPaidAmount(''); setDiscount(''); return; }
     api.getTrainers().then(setTrainers).catch(() => {});
     api.getMembershipPlans().then(setPlans).catch(() => {});
   }, [open]);
 
-  const reset = () => { setStep(1); setName(''); setPhone(''); setGender('Male'); setSelectedPlan(null); setSelectedTrainer(null); setPaidAmount(''); };
+  const reset = () => { setStep(1); setName(''); setPhone(''); setGender('Male'); setSelectedPlan(null); setSelectedTrainer(null); setPaidAmount(''); setDiscount(''); };
 
   const handleNext = () => {
     if (!name.trim()) { toast.error('Enter client name'); return; }
     if (!phone.trim()) { toast.error('Enter phone number'); return; }
     setStep(2);
   };
+
+  const discountAmt = Math.min(Math.max(Number(discount) || 0, 0), selectedPlan?.default_price || 0);
+  const finalAmount = (selectedPlan?.default_price || 0) - discountAmt;
 
   const handleSubmit = async () => {
     if (!selectedTrainer) { toast.error('Select a trainer'); return; }
@@ -53,7 +57,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
         client_id: client.id,
         trainer_id: selectedTrainer.id,
         plan_id: selectedPlan.id,
-        total_charged: selectedPlan.default_price,
+        total_charged: finalAmount,
         start_date: new Date().toISOString().split('T')[0],
         end_date: new Date(Date.now() + selectedPlan.months_count * 30 * 86400000).toISOString().split('T')[0],
         status: 'active',
@@ -205,17 +209,32 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
                   <span className="font-semibold text-[var(--text-primary)]">{val}</span>
                 </div>
               ))}
+              {discountAmt > 0 && (
+                <div className="flex justify-between text-[12px]">
+                  <span className="text-[var(--text-tertiary)]">Discount</span>
+                  <span className="font-semibold text-[var(--success)]">-{fmt(discountAmt)}</span>
+                </div>
+              )}
               <div className="border-t border-[var(--border)] pt-[10px] flex justify-between text-[13px] font-bold">
                 <span className="text-[var(--text-primary)]">Total Charged</span>
-                <span style={{ color: 'var(--red)' }}>{fmt(selectedPlan?.default_price || 0)}</span>
+                <span style={{ color: 'var(--red)' }}>{fmt(finalAmount)}</span>
               </div>
             </div>
-            <div className="mt-[14px]">
-              <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Amount Paid Today</label>
-              <input type="number" value={paidAmount} onChange={e => setPaidAmount(e.target.value)}
-                placeholder="0"
-                className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
-              />
+            <div className="mt-[14px] grid grid-cols-2 gap-[12px]">
+              <div>
+                <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Discount</label>
+                <input type="number" value={discount} onChange={e => setDiscount(e.target.value)}
+                  placeholder="0"
+                  className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
+                />
+              </div>
+              <div>
+                <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Amount Paid Today</label>
+                <input type="number" value={paidAmount} onChange={e => setPaidAmount(e.target.value)}
+                  placeholder="0"
+                  className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
+                />
+              </div>
             </div>
             <div className="mt-[20px] flex justify-between">
               <button onClick={() => setStep(2)} className="rounded-[10px] border border-[var(--border)] px-[20px] py-[9px] text-[12px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.05)]">← Back</button>
