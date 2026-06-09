@@ -156,8 +156,8 @@ export function StatusBadge({ status }: { status: string }) {
 }
 
 export function TrainerTag({ trainer }: { trainer: string }) {
-  const tagClass = trainer === 'ABHISHEK' ? 'tag-a' : trainer === 'RIYA' ? 'tag-r' : 'tag-k';
-  const tagText = trainer === 'ABHISHEK' ? 'Abhishek' : trainer === 'RIYA' ? 'Riya' : 'Rajat';
+  const tagClass = trainer === 'AK' ? 'tag-a' : trainer === 'RS' ? 'tag-r' : trainer === 'SV' ? 'tag-s' : 'tag-k';
+  const tagText = trainer === 'AK' ? 'Abhishek' : trainer === 'RS' ? 'Riya' : trainer === 'SV' ? 'Shivani' : 'Rajat';
   return <span className={`tag ${tagClass}`}>{tagText}</span>;
 }
 

@@ -124,6 +124,7 @@
   .tag-a { background: linear-gradient(135deg, rgba(255,55,95,0.14), rgba(255,55,95,0.06)); color: #FF375F; border: 1px solid rgba(255,55,95,0.2); }
   .tag-r { background: linear-gradient(135deg, rgba(255,107,157,0.14), rgba(255,107,157,0.06)); color: #FF6B9D; border: 1px solid rgba(255,107,157,0.2); }
   .tag-k { background: linear-gradient(135deg, rgba(90,200,245,0.14), rgba(90,200,245,0.06)); color: #5AC8F5; border: 1px solid rgba(90,200,245,0.2); }
+  .tag-s { background: linear-gradient(135deg, rgba(255,214,10,0.14), rgba(255,214,10,0.06)); color: #FFD60A; border: 1px solid rgba(255,214,10,0.2); }
 
   .qa-chip {
     display: flex; align-items: center; gap: 6px;
