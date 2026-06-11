@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export function useTheme() {
   const [isDark, setIsDark] = useState(() => {
     const saved = localStorage.getItem('ydl-theme');
-    return saved ? saved === 'dark' : false;
+    return saved ? saved === 'dark' : true;
   });
 
   useEffect(() => {
