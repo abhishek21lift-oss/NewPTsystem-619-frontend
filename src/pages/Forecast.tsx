@@ -76,7 +76,7 @@ export default function Forecast() {
               return (
                 <div key={i} className="flex items-center gap-3 mb-[11px]">
                   <div className="text-[12px] font-semibold text-[var(--text-secondary)] w-[72px]">{r.month}</div>
-                  <div className="flex-1 h-[7px] rounded-[4px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
+                   <div className="flex-1 h-[7px] rounded-[4px] bg-[var(--chart-grid)] overflow-hidden">
                     <div className="h-full rounded-[4px] transition-all duration-1300"
                       style={{ width: `${(r.revenue / maxRev) * 100}%`, background: `linear-gradient(90deg,${fcColors[i]},${gradColor(fcColors[i])})`, opacity: i < 2 ? 1 : 0.7 }}
                   />
@@ -104,7 +104,7 @@ export default function Forecast() {
                   <span className="text-[12.5px] font-bold" style={{ color: sc.color }}>{sc.name}</span>
                   <span className="text-[15px] font-extrabold">{sc.val}</span>
                 </div>
-                <div className="h-[5px] rounded-[3px] bg-[rgba(255,255,255,0.06)] overflow-hidden mb-[6px]">
+                 <div className="h-[5px] rounded-[3px] bg-[var(--chart-grid)] overflow-hidden mb-[6px]">
                   <div className="h-full rounded-[3px]" style={{ width: `${sc.pct}%`, background: sc.color }} />
                 </div>
                 <div className="text-[11px] text-[var(--text-tertiary)]">{sc.sub}</div>

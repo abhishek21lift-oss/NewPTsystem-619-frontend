@@ -44,9 +44,9 @@ export default function NotificationPanel({ open, onClose, notifications }: Prop
           <div className="px-[16px] py-[24px] text-center text-[12px] text-[var(--text-tertiary)]">No notifications</div>
         ) : (
           notifications.map((n, i) => (
-            <div key={i} className="flex items-start gap-[11px] border-b border-[rgba(255,255,255,0.03)] px-[16px] py-[12px] transition-colors hover:bg-[rgba(255,255,255,0.02)]">
+            <div key={i} className="flex items-start gap-[11px] border-b border-[var(--table-border2)] px-[16px] py-[12px] transition-colors hover:bg-[var(--insight-bg)]">
               <div className="flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[9px] text-[13px]"
-                style={{ background: n.color?.replace(')', ',0.12)').replace('var(', '') || 'rgba(255,255,255,0.06)' }}
+                style={{ background: n.color?.replace(')', ',0.12)').replace('var(', '') || 'var(--chart-grid)' }}
               >
                 {n.icon}
               </div>

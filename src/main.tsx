@@ -15,7 +15,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           style: {
             background: 'rgba(18,18,20,0.97)',
             color: '#fff',
-            border: '1px solid rgba(255,255,255,0.07)',
+            border: '1px solid var(--border)',
             borderRadius: '12px',
             fontSize: '13px',
             backdropFilter: 'blur(20px)',

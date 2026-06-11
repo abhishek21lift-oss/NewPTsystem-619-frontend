@@ -58,7 +58,7 @@ export default function Sidebar({ onAddTrainer }: SidebarProps) {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 z-50 flex h-screen w-[var(--sidebar-w)] flex-col border-r border-[rgba(255,255,255,0.06)]"
+    <aside className="fixed left-0 top-0 z-50 flex h-screen w-[var(--sidebar-w)] flex-col border-r border-[var(--border)]"
       style={{ background: 'var(--sidebar-bg)', backdropFilter: 'blur(60px) saturate(180%)', WebkitBackdropFilter: 'blur(60px) saturate(180%)' }}
     >
       <div className="border-b border-[var(--border)] px-[18px] py-[20px]">
@@ -138,7 +138,7 @@ export default function Sidebar({ onAddTrainer }: SidebarProps) {
             <ChevronDown size={14} className={clsx('transition-transform duration-200', trainerOpen && 'rotate-180')} />
           </div>
           {trainerOpen && (
-            <div className="ml-[8px] pl-[6px] border-l border-[rgba(255,255,255,0.07)]">
+            <div className="ml-[8px] pl-[6px] border-l border-[var(--border)]">
               {[
                 { label: 'Trainer Stats', icon: BarChart3, path: '/trainers' },
                 { label: 'Analytics', icon: Trophy, path: '/analytics' },

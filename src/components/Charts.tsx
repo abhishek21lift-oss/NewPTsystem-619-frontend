@@ -275,8 +275,9 @@ export function drawDonut3D(id: string, segs: { v: number; c: string }[]) {
   ctx.fill();
 
   const sh = ctx.createRadialGradient(cx - 16, cy - 22, 4, cx, cy, OR);
-  sh.addColorStop(0, 'rgba(255,255,255,0.09)');
-  sh.addColorStop(1, 'rgba(255,255,255,0)');
+  const l = document.body.classList.contains('light');
+  sh.addColorStop(0, l ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.09)');
+  sh.addColorStop(1, l ? 'rgba(0,0,0,0)' : 'rgba(255,255,255,0)');
   ctx.beginPath();
   ctx.arc(cx, cy, OR, 0, Math.PI * 2);
   ctx.arc(cx, cy, IR, Math.PI * 2, 0, true);

@@ -83,7 +83,7 @@ export default function MembershipPlans() {
         <div className="overflow-x-auto">
           <table className="w-full border-collapse text-[12px]">
             <thead>
-              <tr style={{ background: 'rgba(255,255,255,0.02)' }}>
+              <tr style={{ background: 'var(--insight-bg)' }}>
                 {['Name', 'Duration', 'Months', 'Price', 'Enrollments', 'Actions'].map(h =>
                   <th key={h} className="px-[15px] py-[11px] text-[9.5px] font-bold uppercase tracking-[0.8px] text-[var(--text-tertiary)] text-left whitespace-nowrap border-b border-[var(--border)]">{h}</th>
                 )}
@@ -91,16 +91,16 @@ export default function MembershipPlans() {
             </thead>
             <tbody>
               {plans.map(p => (
-                <tr key={p.id} className="transition-colors hover:[&_td]:bg-[rgba(255,255,255,0.02)]">
-                  <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] font-bold text-[var(--text-primary)]">{p.name}</td>
-                  <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)]">{p.duration}</td>
-                  <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)]">{p.months_count}</td>
-                  <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)] font-bold">{fmt(p.default_price)}</td>
-                  <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)] text-[var(--text-secondary)]">{p.enrollments?.[0]?.count || 0}</td>
-                  <td className="px-[15px] py-[12px] border-b border-[rgba(255,255,255,0.03)]">
+                <tr key={p.id} className="transition-colors hover:[&_td]:bg-[var(--insight-bg)]">
+                  <td className="px-[15px] py-[12px] border-b border-[var(--table-border2)] font-bold text-[var(--text-primary)]">{p.name}</td>
+                  <td className="px-[15px] py-[12px] border-b border-[var(--table-border2)] text-[var(--text-secondary)]">{p.duration}</td>
+                  <td className="px-[15px] py-[12px] border-b border-[var(--table-border2)] text-[var(--text-secondary)]">{p.months_count}</td>
+                  <td className="px-[15px] py-[12px] border-b border-[var(--table-border2)] text-[var(--text-secondary)] font-bold">{fmt(p.default_price)}</td>
+                  <td className="px-[15px] py-[12px] border-b border-[var(--table-border2)] text-[var(--text-secondary)]">{p.enrollments?.[0]?.count || 0}</td>
+                  <td className="px-[15px] py-[12px] border-b border-[var(--table-border2)]">
                     <div className="flex gap-[6px]">
                       <button onClick={() => openEdit(p)}
-                        className="flex h-[28px] w-[28px] items-center justify-center rounded-[7px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] text-[var(--text-tertiary)] transition-all hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-primary)]"
+                        className="flex h-[28px] w-[28px] items-center justify-center rounded-[7px] border border-[var(--border)] bg-[var(--input-bg)] text-[var(--text-tertiary)] transition-all hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)]"
                       ><Edit3 size={12} /></button>
                       <button onClick={() => handleDelete(p.id, p.name)}
                         className="flex h-[28px] w-[28px] items-center justify-center rounded-[7px] border border-[rgba(255,55,95,0.2)] bg-[rgba(255,55,95,0.06)] text-[var(--red)] transition-all hover:bg-[rgba(255,55,95,0.12)]"
@@ -121,7 +121,7 @@ export default function MembershipPlans() {
             <div>
               <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Plan Name</label>
               <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Premium Monthly"
-                className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
+                className="w-full rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
               />
             </div>
             <div>
@@ -132,7 +132,7 @@ export default function MembershipPlans() {
                     className="rounded-[10px] border px-[14px] py-[9px] text-[12px] font-semibold transition-all"
                     style={{
                       borderColor: duration === d ? 'rgba(255,55,95,0.5)' : 'var(--border)',
-                      background: duration === d ? 'rgba(255,55,95,0.12)' : 'rgba(255,255,255,0.04)',
+                      background: duration === d ? 'rgba(255,55,95,0.12)' : 'var(--input-bg)',
                       color: duration === d ? 'var(--text-primary)' : 'var(--text-secondary)',
                     }}
                   >{d}</button>
@@ -142,13 +142,13 @@ export default function MembershipPlans() {
             <div>
               <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Price (₹)</label>
               <input type="number" value={price} onChange={e => setPrice(e.target.value)} placeholder="e.g. 25000"
-                className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
+                className="w-full rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
               />
             </div>
           </div>
           <div className="mt-[22px] flex justify-end gap-[8px]">
             <button onClick={() => setShowForm(false)}
-              className="rounded-[10px] border border-[var(--border)] px-[18px] py-[9px] text-[11px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.05)]"
+              className="rounded-[10px] border border-[var(--border)] px-[18px] py-[9px] text-[11px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-hover)]"
             >Cancel</button>
             <button onClick={handleSave} disabled={submitting}
               className="rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[18px] py-[9px] text-[11px] font-bold text-white transition-all hover:-translate-y-px disabled:opacity-40"

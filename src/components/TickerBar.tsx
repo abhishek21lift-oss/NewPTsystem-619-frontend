@@ -33,7 +33,7 @@ export default function TickerBar() {
           {items.map((item, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-[6px] whitespace-nowrap border-r border-[rgba(255,255,255,0.06)] px-[22px] text-[11px] font-semibold"
+              className="inline-flex items-center gap-[6px] whitespace-nowrap border-r border-[var(--border)] px-[22px] text-[11px] font-semibold"
             >
               <span
                 className="h-[6px] w-[6px] shrink-0 rounded-full"

@@ -31,7 +31,7 @@ export default function Schedule() {
         <CardHeader title="Session Activity Heatmap" subtitle="Last 90 days · hover cells for details"
           action={
             <div className="flex gap-[5px] items-center text-[10.5px] text-[var(--text-tertiary)]">
-              Less <div className="h-[9px] w-[9px] rounded-[3px]" style={{ background: 'rgba(255,255,255,0.06)' }} />
+              Less <div className="h-[9px] w-[9px] rounded-[3px]" style={{ background: 'var(--chart-grid)' }} />
               <div className="h-[9px] w-[9px] rounded-[3px]" style={{ background: 'rgba(255,55,95,0.25)' }} />
               <div className="h-[9px] w-[9px] rounded-[3px]" style={{ background: 'rgba(255,55,95,0.55)' }} />
               <div className="h-[9px] w-[9px] rounded-[3px]" style={{ background: '#FF375F' }} /> More
@@ -45,7 +45,7 @@ export default function Schedule() {
             const v = (day === 0 || day === 6)
               ? (r < 0.6 ? 0 : r < 0.85 ? 1 : 2)
               : (r < 0.1 ? 0 : r < 0.35 ? 1 : r < 0.62 ? 2 : r < 0.82 ? 3 : 4);
-            const cols = ['rgba(255,255,255,0.05)', 'rgba(255,55,95,0.18)', 'rgba(255,55,95,0.38)', 'rgba(255,55,95,0.62)', '#FF375F'];
+            const cols = ['var(--chart-grid)', 'rgba(255,55,95,0.18)', 'rgba(255,55,95,0.38)', 'rgba(255,55,95,0.62)', '#FF375F'];
             const labels = ['No sessions', '1–2 sessions', '3–4 sessions', '5–6 sessions', '7+ sessions'];
             const base = new Date('2026-01-10');
             const d = new Date(base.getTime() + i * 86400000);

@@ -38,14 +38,14 @@ export default function Header({ title, subtitle, onNewClient, notifOpen, onNoti
           <input
             type="text"
             placeholder="Search… ⌘K"
-            className="w-[200px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[8px] pl-[30px] text-xs text-[var(--text-secondary)] placeholder:text-[var(--text-tertiary)] transition-all focus:w-[240px] focus:border-[rgba(255,55,95,0.35)] focus:bg-[rgba(255,255,255,0.06)] focus:text-[var(--text-primary)] focus:outline-none font-[inherit]"
+            className="w-[200px] rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[8px] pl-[30px] text-xs text-[var(--text-secondary)] placeholder:text-[var(--text-tertiary)] transition-all focus:w-[240px] focus:border-[rgba(255,55,95,0.35)] focus:bg-[var(--input-bg-focus)] focus:text-[var(--text-primary)] focus:outline-none font-[inherit]"
           />
         </div>
 
         <div className="relative">
           <div
             onClick={onNotifToggle}
-            className="relative flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
+            className="relative flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] transition-all hover:bg-[var(--surface-hover)]"
           >
             <Bell size={15} strokeWidth={1.5} />
             <div className="absolute -right-[4px] -top-[4px] flex h-[16px] min-w-[16px] items-center justify-center rounded-full bg-[var(--red)] px-[3px] text-[9px] font-extrabold text-white shadow-[0_0_0_2px_var(--bg)]">
@@ -57,12 +57,12 @@ export default function Header({ title, subtitle, onNewClient, notifOpen, onNoti
 
         <div
           onClick={toggle}
-          className="flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
+          className="flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] transition-all hover:bg-[var(--surface-hover)]"
         >
           {isDark ? <Moon size={15} strokeWidth={1.5} /> : <Sun size={15} strokeWidth={1.5} />}
         </div>
 
-        <button className="flex items-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[13px] py-[7px] text-xs font-semibold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-primary)]">
+        <button className="flex items-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[13px] py-[7px] text-xs font-semibold text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-hover)] hover:text-[var(--text-primary)]">
           <Download size={12} strokeWidth={2} />
           Export
         </button>
@@ -70,7 +70,7 @@ export default function Header({ title, subtitle, onNewClient, notifOpen, onNoti
         <button
           onClick={onNewClient}
           className="flex items-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[14px] py-[7px] text-xs font-bold text-white transition-all hover:-translate-y-[1px] active:translate-y-0 cursor-pointer font-[inherit]"
-          style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.35), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+          style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.35), inset 0 1px 0 var(--border-strong)' }}
         >
           <Plus size={13} strokeWidth={2.5} />
           New Client

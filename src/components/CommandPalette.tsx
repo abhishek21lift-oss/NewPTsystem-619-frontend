@@ -90,7 +90,7 @@ export default function CommandPalette() {
                 'flex items-center gap-[10px] mx-[6px] rounded-[8px] px-[12px] py-[8px] cursor-pointer transition-all',
                 i === selectedIdx
                   ? 'bg-[rgba(255,55,95,0.12)] text-[var(--text-primary)]'
-                  : 'text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.04)]'
+                  : 'text-[var(--text-secondary)] hover:bg-[var(--surface)]'
               )}
             >
               <span className="text-[14px]">{item.icon}</span>

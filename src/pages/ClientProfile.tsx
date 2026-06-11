@@ -204,9 +204,9 @@ export default function ClientProfile() {
             {enrollments.map((enr: any, i: number) => {
               const enrPaid = enr.payments?.reduce((s: number, p: any) => s + Number(p.amount), 0) || 0;
               return (
-                <div key={enr.id || i} className="flex items-center gap-[14px] px-[18px] py-[12px] border-b border-[var(--border)] last:border-b-0 hover:bg-[rgba(255,255,255,0.02)] transition-colors">
+                <div key={enr.id || i} className="flex items-center gap-[14px] px-[18px] py-[12px] border-b border-[var(--border)] last:border-b-0 hover:bg-[var(--surface)] transition-colors">
                   <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-full text-[11px] font-bold"
-                    style={{ background: i === 0 ? 'rgba(255,55,95,0.15)' : 'rgba(255,255,255,0.05)', color: i === 0 ? '#FF7087' : 'var(--text-tertiary)' }}
+                    style={{ background: i === 0 ? 'rgba(255,55,95,0.15)' : 'var(--surface)', color: i === 0 ? '#FF7087' : 'var(--text-tertiary)' }}
                   >{i + 1}</div>
                   <div className="flex-1 min-w-0 grid grid-cols-5 gap-[12px] items-center text-[12px]">
                     <div className="font-semibold text-[var(--text-primary)]">{enr.membership_plans?.duration || '—'}</div>
