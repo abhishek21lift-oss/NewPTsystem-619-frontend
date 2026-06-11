@@ -274,7 +274,9 @@ export function drawDonut3D(id: string, segs: { v: number; c: string }[]) {
   ctx.fill();
 }
 
-export function drawRevenueChart(id: string, data: { m: string; rev: number }[]) {
+type RevenueData = { m?: string; month?: string; rev: number };
+
+export function drawRevenueChart(id: string, data: RevenueData[]) {
   const svg = document.getElementById(id) as unknown as SVGSVGElement | null;
   if (!svg) return;
   svg.innerHTML = '';
@@ -308,8 +310,9 @@ export function drawRevenueChart(id: string, data: { m: string; rev: number }[])
 
   const labels = pts.map((p, i) => {
     if (i % 3 !== 0) return '';
-    const parts = p.m.split(' ');
-    return `<text x="${p.x}" y="${pT + h + 19}" fill="rgba(255,255,255,0.26)" font-size="8.5" text-anchor="middle" font-family="Plus Jakarta Sans">${parts[0].slice(0, 3)} '${(parts[1] || '').slice(2)}</text>`;
+    const monthLabel = p.m || '';
+    const parts = monthLabel.split(' ');
+    return `<text x="${p.x}" y="${pT + h + 19}" fill="rgba(255,255,255,0.26)" font-size="8.5" text-anchor="middle" font-family="Plus Jakarta Sans">${(parts[0] || '').slice(0, 3)}'${(parts[1] || '').slice(2)}</text>`;
   });
 
   const dots = pts.map((p, i) => {
