@@ -82,38 +82,35 @@
   }
 
   body.light {
-    --bg: #F2F2F7;
+    --bg: #F5F2ED;
     --bg2: #FFFFFF;
-    --surface: rgba(255,255,255,0.7);
-    --surface-hover: rgba(255,255,255,0.85);
-    --surface-active: rgba(255,255,255,1);
-    --border: rgba(0,0,0,0.06);
-    --border-strong: rgba(0,0,0,0.12);
+    --surface: #FFFFFF;
+    --surface-hover: #FAFAFA;
+    --surface-active: #F5F5F5;
+    --border: rgba(0,0,0,0.07);
+    --border-strong: rgba(0,0,0,0.14);
     --text-primary: #1C1C1E;
-    --text-secondary: rgba(28,28,30,0.56);
-    --text-tertiary: rgba(28,28,30,0.28);
-    --sidebar-bg: rgba(242,242,247,0.95);
-    --header-bg: rgba(255,255,255,0.82);
-    --statusbar-bg: rgba(242,242,247,0.92);
-    --modal-bg: rgba(242,242,247,0.97);
-    --panel-bg: rgba(255,255,255,0.96);
-    --command-bg: rgba(255,255,255,0.98);
-    --chart-grid: rgba(0,0,0,0.06);
-    --chart-label: rgba(0,0,0,0.12);
-    --chart-tick: rgba(0,0,0,0.20);
-    --chart-dot: rgba(0,0,0,0.15);
-    --insight-bg: rgba(255,255,255,0.6);
-    --insight-hover: rgba(255,255,255,0.8);
-    --table-th-bg: rgba(0,0,0,0.02);
-    --table-border: rgba(0,0,0,0.04);
-    --table-border2: rgba(0,0,0,0.03);
-    --row-hover: rgba(255,55,95,0.03);
-    --input-bg: rgba(255,255,255,0.7);
-    --input-bg-focus: rgba(255,255,255,0.9);
-    --ticker-bg: linear-gradient(90deg, rgba(255,55,95,0.05), rgba(10,132,255,0.03), rgba(48,209,88,0.04), rgba(255,159,10,0.04));
-    --spotlight-bg: linear-gradient(135deg, rgba(255,55,95,0.05), rgba(10,132,255,0.03), rgba(191,90,242,0.02), rgba(48,209,88,0.02));
+    --text-secondary: rgba(28,28,30,0.65);
+    --text-tertiary: rgba(28,28,30,0.42);
+    --modal-bg: #FFFFFF;
+    --panel-bg: #FFFFFF;
+    --command-bg: #FFFFFF;
+    --chart-grid: rgba(0,0,0,0.07);
+    --chart-label: rgba(0,0,0,0.15);
+    --chart-tick: rgba(0,0,0,0.25);
+    --chart-dot: rgba(0,0,0,0.18);
+    --insight-bg: rgba(255,255,255,0.8);
+    --insight-hover: #FFFFFF;
+    --table-th-bg: rgba(0,0,0,0.03);
+    --table-border: rgba(0,0,0,0.06);
+    --table-border2: rgba(0,0,0,0.04);
+    --row-hover: rgba(255,55,95,0.04);
+    --input-bg: #FFFFFF;
+    --input-bg-focus: #FFFFFF;
+    --ticker-bg: linear-gradient(90deg, rgba(255,55,95,0.06), rgba(10,132,255,0.04), rgba(48,209,88,0.04), rgba(255,159,10,0.05));
+    --spotlight-bg: linear-gradient(135deg, rgba(255,55,95,0.06), rgba(10,132,255,0.04), rgba(191,90,242,0.03), rgba(48,209,88,0.03));
     background-image:
-      radial-gradient(ellipse 100% 55% at -5% -5%, rgba(255,55,95,0.03) 0%, transparent 50%),
+      radial-gradient(ellipse 100% 55% at -5% -5%, rgba(255,55,95,0.04) 0%, transparent 50%),
       radial-gradient(ellipse 80% 50% at 105% 15%, rgba(10,132,255,0.03) 0%, transparent 50%);
   }
 
@@ -204,7 +201,7 @@
   .badge-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
   .b-active  { background: rgba(48,209,88,0.12); color: var(--green-light); }
   .b-active .badge-dot  { background: var(--green); box-shadow: 0 0 6px rgba(48,209,88,0.5); }
-  .b-expired { background: rgba(255,255,255,0.04); color: var(--text-tertiary); }
+  .b-expired { background: var(--surface); color: var(--text-tertiary); }
   .b-expired .badge-dot { background: var(--text-tertiary); }
   .b-soon    { background: rgba(255,159,10,0.12); color: var(--orange-light); }
   .b-soon .badge-dot    { background: var(--orange); box-shadow: 0 0 6px rgba(255,159,10,0.5); }
