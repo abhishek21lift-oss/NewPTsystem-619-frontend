@@ -94,7 +94,7 @@ export default function Payouts() {
                 {items.map((item, i) => (
                   <div key={i} className="flex items-center gap-3 pb-[9px] border-b border-[var(--border)] last:border-b-0 last:pb-0">
                     <div className="text-[11.5px] text-[var(--text-secondary)] font-medium w-[80px] shrink-0">{item.m}</div>
-                    <div className="flex-1 h-[6px] rounded-[3px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
+                    <div className="flex-1 h-[6px] rounded-[3px] bg-[var(--chart-grid)] overflow-hidden">
                       <div className="h-full rounded-[3px]" style={{ width: `${(item.rev / maxRev) * 100}%`, background: `linear-gradient(90deg, ${meta.color}, ${meta.color}88)` }} />
                     </div>
                     <div className="text-[12px] font-bold w-[72px] text-right">{fmt(item.rev)}</div>

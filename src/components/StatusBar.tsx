@@ -17,7 +17,7 @@ export default function StatusBar() {
       className="fixed bottom-0 right-0 z-40 flex h-[26px] items-center gap-5 px-[20px] text-[9.5px] font-medium text-[var(--text-tertiary)]"
       style={{
         left: 'var(--sidebar-w)',
-        background: 'rgba(8,8,12,0.92)',
+        background: 'var(--statusbar-bg)',
         borderTop: '1px solid var(--border)',
         backdropFilter: 'blur(20px)',
       }}

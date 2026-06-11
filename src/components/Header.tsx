@@ -25,7 +25,7 @@ export default function Header({ title, subtitle, onNewClient, notifOpen, onNoti
   return (
     <header
       className="sticky top-0 z-40 flex h-[var(--header-h)] items-center justify-between border-b border-[var(--border)] px-[28px]"
-      style={{ background: 'rgba(8,8,12,0.78)', backdropFilter: 'blur(30px) saturate(180%)' }}
+      style={{ background: 'var(--header-bg)', backdropFilter: 'blur(30px) saturate(180%)' }}
     >
       <div>
         <h1 className="text-[17px] font-extrabold tracking-tight">{title}</h1>

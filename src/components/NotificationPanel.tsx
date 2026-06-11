@@ -26,7 +26,7 @@ export default function NotificationPanel({ open, onClose, notifications }: Prop
       ref={ref}
       className="absolute right-0 top-[calc(100%+8px)] z-50 w-[340px] animate-[fadeUp_0.15s_ease-out] overflow-hidden rounded-[14px] border border-[var(--border)] shadow-2xl"
       style={{
-        background: 'rgba(14,14,18,0.96)',
+        background: 'var(--panel-bg)',
         backdropFilter: 'blur(40px) saturate(180%)',
       }}
     >

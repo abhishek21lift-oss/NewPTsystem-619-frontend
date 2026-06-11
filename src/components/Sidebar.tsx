@@ -59,7 +59,7 @@ export default function Sidebar({ onAddTrainer }: SidebarProps) {
 
   return (
     <aside className="fixed left-0 top-0 z-50 flex h-screen w-[var(--sidebar-w)] flex-col border-r border-[rgba(255,255,255,0.06)]"
-      style={{ background: 'rgba(8,8,12,0.94)', backdropFilter: 'blur(60px) saturate(180%)', WebkitBackdropFilter: 'blur(60px) saturate(180%)' }}
+      style={{ background: 'var(--sidebar-bg)', backdropFilter: 'blur(60px) saturate(180%)', WebkitBackdropFilter: 'blur(60px) saturate(180%)' }}
     >
       <div className="border-b border-[var(--border)] px-[18px] py-[20px]">
         <div className="flex items-center gap-[11px]">

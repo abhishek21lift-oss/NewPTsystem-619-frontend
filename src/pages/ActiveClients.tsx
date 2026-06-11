@@ -29,7 +29,7 @@ export default function ActiveClients() {
   return (
     <div className="grid grid-cols-3 gap-[14px]">
       {Object.entries(byTrainer).map(([code, list]) => {
-        const meta = trainerMeta[code] || { name: code, initials: code[0], color: '#fff', bg: 'linear-gradient(145deg,#888,#444)', shadow: 'rgba(255,255,255,0.2)' };
+        const meta = trainerMeta[code] || { name: code, initials: code[0], color: '#fff', bg: 'linear-gradient(145deg,#888,#444)', shadow: 'rgba(0,0,0,0.15)' };
         return (
           <GlassCard key={code}>
             <CardHeader title={<span style={{ color: meta.color }}>{meta.name} · Active</span>}

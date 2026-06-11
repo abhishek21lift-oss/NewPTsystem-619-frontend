@@ -44,9 +44,9 @@ export default function Revenue() {
           <CardHeader title="Monthly Revenue · All Trainers" subtitle="Total studio earnings per month" />
           <div className="flex flex-col gap-[9px] px-5 py-3">
             {revenue.map((r, i) => (
-              <div key={i} className="flex items-center gap-3 pb-[9px] border-b border-[rgba(255,255,255,0.03)] last:border-b-0 last:pb-0">
+              <div key={i} className="flex items-center gap-3 pb-[9px] border-b border-[var(--table-border2)] last:border-b-0 last:pb-0">
                 <div className="text-[11.5px] text-[var(--text-secondary)] font-medium w-[86px] shrink-0">{r.month || r.m}</div>
-                <div className="flex-1 h-[5px] rounded-[3px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
+                <div className="flex-1 h-[5px] rounded-[3px] bg-[var(--chart-grid)] overflow-hidden">
                   <div className="h-full rounded-[3px]" style={{ width: `${(r.rev / maxRev) * 100}%`, background: 'linear-gradient(90deg,var(--aurora-red),var(--aurora-coral))' }} />
                 </div>
                 <div className="text-[12px] font-bold w-[76px] text-right">{fmt(r.rev)}</div>
@@ -69,7 +69,7 @@ export default function Revenue() {
                     </div>
                     <span className="text-[13px] font-extrabold">{fmt(t.total_revenue)}</span>
                   </div>
-                  <div className="h-[7px] rounded-[4px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
+                  <div className="h-[7px] rounded-[4px] bg-[var(--chart-grid)] overflow-hidden">
                     <div className="h-full rounded-[4px]" style={{ width: `${(t.total_revenue / maxTotal) * 100}%`, background: `linear-gradient(90deg,${trainerColors[i]},${trainerColors[i] === '#FF375F' ? '#FF6B6B' : trainerColors[i] === '#FF6B9D' ? '#FF375F' : '#0A84FF'})` }} />
                   </div>
                 </div>

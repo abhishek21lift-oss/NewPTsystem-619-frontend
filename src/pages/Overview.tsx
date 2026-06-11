@@ -176,7 +176,7 @@ export default function Overview() {
             </div>
             <div className="flex w-full flex-col gap-[8px]">
               <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: '#32D74B' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Active</span><span className="text-[12.5px] font-bold" style={{ color: 'var(--green-light)' }}>{stats.active_enrollments}</span></div>
-              <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: 'rgba(255,255,255,0.2)' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Expired</span><span className="text-[12.5px] font-bold">{stats.expired_enrollments}</span></div>
+              <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: 'var(--chart-dot)' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Expired</span><span className="text-[12.5px] font-bold">{stats.expired_enrollments}</span></div>
               <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: '#FF9500' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Expiring Soon</span><span className="text-[12.5px] font-bold" style={{ color: 'var(--orange-light)' }}>{stats.soon_enrollments}</span></div>
             </div>
           </div>
@@ -241,7 +241,7 @@ export default function Overview() {
           <CardHeader title="Recent Activity" subtitle="Latest studio updates" action={<div className="c-action">View All</div>} />
           <div className="flex flex-col px-5 py-3">
             {activities.slice(0, 6).map((act, i) => (
-              <div key={act.id || i} className="flex items-start gap-3 border-b border-[rgba(255,255,255,0.04)] py-[10px] last:border-b-0">
+              <div key={act.id || i} className="flex items-start gap-3 border-b border-[var(--table-border)] py-[10px] last:border-b-0">
                 <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[10px] text-[14px]"
                   style={{ background: act.color || 'rgba(10,132,255,0.10)' }}
                 >
@@ -276,7 +276,7 @@ export default function Overview() {
               <div className="mb-[2px] text-[14px] font-bold tracking-tight">{t.name}</div>
               <div className="mb-[14px] text-[10px] text-[var(--text-tertiary)] font-medium">{t.role}</div>
               <div className="mb-[5px] flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Active Clients</span><span className="font-bold">{t.clients}</span></div>
-              <div className="mb-[3px] h-[4px] rounded-[2px] bg-[rgba(255,255,255,0.06)] overflow-hidden"><div className="h-full rounded-[2px]" style={{ width: `${t.pct}%`, background: t.fillGrad }} /></div>
+              <div className="mb-[3px] h-[4px] rounded-[2px] bg-[var(--border)] overflow-hidden"><div className="h-full rounded-[2px]" style={{ width: `${t.pct}%`, background: t.fillGrad }} /></div>
               <div className="mt-[6px] flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Monthly Revenue</span><span className="font-bold" style={{ color: 'var(--green)' }}>{fmt(t.revenue)}</span></div>
               <div className="flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Commission (50%)</span><span className="font-bold" style={{ color: 'var(--orange-light)' }}>{fmt(t.commission)}</span></div>
               <div className="flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">All-Time Revenue</span><span className="font-bold" style={{ color: 'var(--blue-light)' }}>{fmt(t.alltime)}</span></div>
@@ -297,13 +297,13 @@ export default function Overview() {
               { label: 'Retention Rate', current: `${Math.round((stats.active_enrollments / Math.max(stats.total_clients, 1)) * 100)}%`, target: '60%', pct: Math.round((stats.active_enrollments / Math.max(stats.total_clients, 1)) * 100), color: 'var(--orange-light)', fill: 'linear-gradient(90deg,#FF9500,#FFB340)' },
               { label: 'Avg Revenue/Client', current: fmt(Math.round(stats.total_revenue / Math.max(stats.total_clients, 1))), target: fmt(25000), pct: Math.min(Math.round(((stats.total_revenue / Math.max(stats.total_clients, 1)) / 25000) * 100), 100), color: 'var(--purple-light)', fill: 'linear-gradient(90deg,#BF5AF2,#D077FF)' },
             ].map((g, i) => (
-              <div key={i} className="rounded-[16px] border border-[var(--border)] bg-[rgba(255,255,255,0.02)] p-4">
+              <div key={i} className="rounded-[16px] border border-[var(--border)] bg-[var(--insight-bg)] p-4">
                 <div className="mb-[10px] text-[10px] font-bold uppercase tracking-[0.6px] text-[var(--text-tertiary)]">{g.label}</div>
                 <div className="mb-[8px] flex items-baseline justify-between">
                   <div className="text-[18px] font-extrabold tracking-tight" style={{ color: g.color }}>{g.current}</div>
                   <div className="text-[10.5px] text-[var(--text-tertiary)]">/ {g.target}</div>
                 </div>
-                <div className="h-[5px] rounded-[3px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
+                <div className="h-[5px] rounded-[3px] bg-[var(--border)] overflow-hidden">
                   <div className="h-full rounded-[3px] transition-all duration-1400" style={{ width: `${g.pct}%`, background: g.fill }} />
                 </div>
                 <div className="mt-[6px] text-[11px] font-bold" style={{ color: `${g.color}` }}>{g.pct}% achieved</div>

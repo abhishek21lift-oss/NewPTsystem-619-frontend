@@ -84,7 +84,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
               <div
                 className="flex h-[28px] w-[28px] items-center justify-center rounded-full text-[11px] font-bold transition-all"
                 style={{
-                  background: step >= s ? 'linear-gradient(145deg, #FF375F, #CC1E3A)' : 'rgba(255,255,255,0.06)',
+                  background: step >= s ? 'linear-gradient(145deg, #FF375F, #CC1E3A)' : 'var(--input-bg-focus)',
                   color: step >= s ? '#fff' : 'var(--text-tertiary)',
                   boxShadow: step >= s ? '0 4px 12px rgba(255,55,95,0.4)' : 'none',
                 }}
@@ -106,13 +106,13 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
               <div>
                 <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Full Name</label>
                 <input value={name} onChange={e => setName(e.target.value)} placeholder="e.g. Rahul Kumar"
-                  className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] focus:bg-[rgba(255,255,255,0.06)] transition-all placeholder:text-[var(--text-tertiary)]"
+                  className="w-full rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] focus:bg-[var(--input-bg-focus)] transition-all placeholder:text-[var(--text-tertiary)]"
                 />
               </div>
               <div>
                 <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Phone Number</label>
                 <input value={phone} onChange={e => setPhone(e.target.value)} placeholder="e.g. 9876543210"
-                  className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] focus:bg-[rgba(255,255,255,0.06)] transition-all placeholder:text-[var(--text-tertiary)]"
+                  className="w-full rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] focus:bg-[var(--input-bg-focus)] transition-all placeholder:text-[var(--text-tertiary)]"
                 />
               </div>
               <div>
@@ -123,7 +123,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
                       className="flex-1 rounded-[10px] border px-[14px] py-[9px] text-[12px] font-semibold transition-all"
                       style={{
                         borderColor: gender === g ? 'rgba(255,55,95,0.5)' : 'var(--border)',
-                        background: gender === g ? 'rgba(255,55,95,0.12)' : 'rgba(255,255,255,0.04)',
+                        background: gender === g ? 'rgba(255,55,95,0.12)' : 'var(--input-bg)',
                         color: gender === g ? 'var(--text-primary)' : 'var(--text-secondary)',
                       }}
                     >
@@ -152,7 +152,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
                     className="rounded-[10px] border px-[14px] py-[10px] text-left transition-all"
                     style={{
                       borderColor: selectedPlan?.id === p.id ? 'rgba(255,55,95,0.5)' : 'var(--border)',
-                      background: selectedPlan?.id === p.id ? 'rgba(255,55,95,0.12)' : 'rgba(255,255,255,0.03)',
+                      background: selectedPlan?.id === p.id ? 'rgba(255,55,95,0.12)' : 'var(--surface)',
                     }}
                   >
                     <div className="text-[13px] font-bold text-[var(--text-primary)]">{p.name}</div>
@@ -169,7 +169,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
                     className="flex flex-col items-center gap-[6px] rounded-[10px] border py-[12px] transition-all"
                     style={{
                       borderColor: selectedTrainer?.id === t.id ? 'rgba(255,55,95,0.5)' : 'var(--border)',
-                      background: selectedTrainer?.id === t.id ? 'rgba(255,55,95,0.12)' : 'rgba(255,255,255,0.03)',
+                      background: selectedTrainer?.id === t.id ? 'rgba(255,55,95,0.12)' : 'var(--surface)',
                     }}
                   >
                     <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full text-[11px] font-extrabold text-white"
@@ -184,7 +184,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
               </div>
             </div>
             <div className="mt-[20px] flex justify-between">
-              <button onClick={() => setStep(1)} className="rounded-[10px] border border-[var(--border)] px-[20px] py-[9px] text-[12px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.05)]">← Back</button>
+              <button onClick={() => setStep(1)} className="rounded-[10px] border border-[var(--border)] px-[20px] py-[9px] text-[12px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-hover)]">← Back</button>
               <button disabled={!selectedPlan || !selectedTrainer}
                 className="rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[24px] py-[9px] text-[12px] font-bold text-white transition-all hover:-translate-y-px disabled:opacity-40"
                 style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.4)' }}
@@ -197,7 +197,7 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
         {step === 3 && (
           <div>
             <h2 className="mb-[14px] text-[15px] font-bold">Payment Summary</h2>
-            <div className="space-y-[10px] rounded-[12px] border border-[var(--border)] bg-[rgba(255,255,255,0.02)] p-[16px]">
+            <div className="space-y-[10px] rounded-[12px] border border-[var(--border)] bg-[var(--insight-bg)] p-[16px]">
               {[
                 ['Client', name],
                 ['Phone', phone],
@@ -225,19 +225,19 @@ export default function AddClientModal({ open, onClose, onSuccess }: Props) {
                 <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Discount</label>
                 <input type="number" value={discount} onChange={e => setDiscount(e.target.value)}
                   placeholder="0"
-                  className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
+                  className="w-full rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
                 />
               </div>
               <div>
                 <label className="mb-[5px] block text-[10.5px] font-semibold text-[var(--text-secondary)]">Amount Paid Today</label>
                 <input type="number" value={paidAmount} onChange={e => setPaidAmount(e.target.value)}
                   placeholder="0"
-                  className="w-full rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
+                  className="w-full rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[10px] text-[13px] text-[var(--text-primary)] outline-none focus:border-[rgba(255,55,95,0.4)] transition-all placeholder:text-[var(--text-tertiary)]"
                 />
               </div>
             </div>
             <div className="mt-[20px] flex justify-between">
-              <button onClick={() => setStep(2)} className="rounded-[10px] border border-[var(--border)] px-[20px] py-[9px] text-[12px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.05)]">← Back</button>
+              <button onClick={() => setStep(2)} className="rounded-[10px] border border-[var(--border)] px-[20px] py-[9px] text-[12px] font-bold text-[var(--text-secondary)] transition-all hover:bg-[var(--surface-hover)]">← Back</button>
               <button onClick={handleSubmit} disabled={submitting}
                 className="rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[24px] py-[9px] text-[12px] font-bold text-white transition-all hover:-translate-y-px disabled:opacity-40"
                 style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.4)' }}

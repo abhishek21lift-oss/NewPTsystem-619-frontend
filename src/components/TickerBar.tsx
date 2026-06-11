@@ -20,7 +20,7 @@ export default function TickerBar() {
     <div
       className="flex h-[34px] items-center overflow-hidden border-b border-[var(--border)]"
       style={{
-        background: 'linear-gradient(90deg, rgba(255,55,95,0.08), rgba(10,132,255,0.05), rgba(48,209,88,0.05), rgba(255,159,10,0.06))',
+        background: 'var(--ticker-bg)',
       }}
     >
       <div className="relative z-[3] shrink-0 whitespace-nowrap px-[14px] text-[10px] font-extrabold uppercase tracking-[1px]"

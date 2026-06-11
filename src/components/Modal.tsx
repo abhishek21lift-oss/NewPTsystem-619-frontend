@@ -33,7 +33,7 @@ export default function Modal({ open, onClose, children, maxWidth = '520px' }: M
           className="relative w-full animate-[fadeUp_0.25s_cubic-bezier(0.16,1,0.3,1)] rounded-[20px] border border-[rgba(255,255,255,0.07)] shadow-2xl overflow-hidden"
           style={{
             maxWidth,
-            background: 'rgba(16,16,20,0.97)',
+            background: 'var(--modal-bg)',
             backdropFilter: 'blur(60px) saturate(180%)',
             WebkitBackdropFilter: 'blur(60px) saturate(180%)',
             boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03)',

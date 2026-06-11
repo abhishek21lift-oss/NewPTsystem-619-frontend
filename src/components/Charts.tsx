@@ -1,5 +1,15 @@
 import { motion } from 'framer-motion';
 
+function cc() {
+  const l = document.body.classList.contains('light');
+  return {
+    grid: l ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.04)',
+    label: l ? 'rgba(0,0,0,0.12)' : 'rgba(255,255,255,0.16)',
+    tick: l ? 'rgba(0,0,0,0.20)' : 'rgba(255,255,255,0.26)',
+    dot: l ? 'rgba(0,0,0,0.15)' : 'rgba(255,255,255,0.25)',
+  };
+}
+
 export function fmt(n: number) {
   return '₹' + n.toLocaleString('en-IN');
 }
@@ -12,8 +22,8 @@ export function KpiCard({ label, value, sub, color, icon: Icon, children, onClic
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16,1,0.3,1] }}
-      className="relative cursor-default overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.06)] p-5 transition-all duration-300 hover:-translate-y-[4px] hover:border-[rgba(255,255,255,0.13)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
-      style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(40px)' }}
+      className="relative cursor-default overflow-hidden rounded-[20px] border border-[var(--border)] p-5 transition-all duration-300 hover:-translate-y-[4px] hover:border-[var(--border-strong)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
+      style={{ background: 'var(--surface)', backdropFilter: 'blur(40px)' }}
       onClick={onClick}
     >
       <div className="absolute -right-[30px] -top-[30px] h-[120px] w-[120px] rounded-full opacity-[0.07] blur-[30px]"
@@ -64,7 +74,7 @@ export function RingChart({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="relative h-[62px] w-[62px] shrink-0">
       <svg className="h-full w-full -rotate-90" viewBox="0 0 62 62">
-        <circle className="fill-none" cx="31" cy="31" r="26" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
+        <circle className="fill-none" cx="31" cy="31" r="26" stroke="var(--chart-grid)" strokeWidth="5" />
         <circle className="fill-none stroke-linecap-round" cx="31" cy="31" r="26"
           stroke={color} strokeWidth="5" strokeDasharray={circumference} strokeDashoffset={offset}
           style={{ transition: 'stroke-dashoffset 1.3s cubic-bezier(0.4,0,0.2,1)' }}
@@ -301,24 +311,25 @@ export function drawRevenueChart(id: string, data: RevenueData[]) {
 
   const line = smooth(pts);
   const area = `${line} L ${pts[pts.length - 1].x} ${pT + h} L ${pts[0].x} ${pT + h} Z`;
+  const c = cc();
   const grids = [0.25, 0.5, 0.75, 1].map(r => {
     const y = pT + h - r * h;
     const v = max * r;
     const lbl = v >= 100000 ? '₹' + (v / 100000).toFixed(1) + 'L' : '₹' + Math.round(v / 1000) + 'K';
-    return `<line x1="${pL}" y1="${y}" x2="${W - pR}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,5"/><text x="${pL + 2}" y="${y - 3}" fill="rgba(255,255,255,0.16)" font-size="8" font-family="JetBrains Mono,monospace">${lbl}</text>`;
+    return `<line x1="${pL}" y1="${y}" x2="${W - pR}" y2="${y}" stroke="${c.grid}" stroke-width="1" stroke-dasharray="4,5"/><text x="${pL + 2}" y="${y - 3}" fill="${c.label}" font-size="8" font-family="JetBrains Mono,monospace">${lbl}</text>`;
   });
 
   const labels = pts.map((p, i) => {
     if (i % 3 !== 0) return '';
     const monthLabel = p.m || '';
     const parts = monthLabel.split(' ');
-    return `<text x="${p.x}" y="${pT + h + 19}" fill="rgba(255,255,255,0.26)" font-size="8.5" text-anchor="middle" font-family="Plus Jakarta Sans">${(parts[0] || '').slice(0, 3)}'${(parts[1] || '').slice(2)}</text>`;
+    return `<text x="${p.x}" y="${pT + h + 19}" fill="${c.tick}" font-size="8.5" text-anchor="middle" font-family="Plus Jakarta Sans">${(parts[0] || '').slice(0, 3)}'${(parts[1] || '').slice(2)}</text>`;
   });
 
   const dots = pts.map((p, i) => {
     const big = p.rev >= 200000;
     if (!big && i % 2 !== 0) return '';
-    return `<circle cx="${p.x}" cy="${p.y}" r="${big ? 5 : 3}" fill="${big ? '#FF375F' : 'rgba(255,255,255,0.25)'}" stroke="${big ? 'rgba(255,55,95,0.35)' : 'transparent'}" stroke-width="${big ? 5 : 0}"/>`;
+    return `<circle cx="${p.x}" cy="${p.y}" r="${big ? 5 : 3}" fill="${big ? '#FF375F' : c.dot}" stroke="${big ? 'rgba(255,55,95,0.35)' : 'transparent'}" stroke-width="${big ? 5 : 0}"/>`;
   });
 
   svg.innerHTML = `

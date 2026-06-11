@@ -76,7 +76,7 @@ export default function ClientDetail({ client, open, onClose }: Props) {
           className="rounded-t-[16px] px-[28px] pb-[28px] pt-[32px] text-white"
           style={{
             background: 'linear-gradient(145deg, #FF375F, #8B0022)',
-            boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2)',
+            boxShadow: 'inset 0 1px 0 var(--chart-dot)',
           }}
         >
           <div className="flex items-start gap-[16px]">
@@ -106,7 +106,7 @@ export default function ClientDetail({ client, open, onClose }: Props) {
                         <button key={g} onClick={() => setEditGender(g)}
                           className="rounded-[6px] px-[10px] py-[4px] text-[10.5px] font-bold transition-all"
                           style={{
-                            background: editGender === g ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.08)',
+                            background: editGender === g ? 'var(--chart-dot)' : 'var(--surface-hover)',
                           }}
                         >{g}</button>
                       ))}
@@ -150,7 +150,7 @@ export default function ClientDetail({ client, open, onClose }: Props) {
             ['Balance', <span key="bal" className="font-bold" style={{ color: balance > 0 ? 'var(--warning)' : 'var(--success)' }}>{fmt(balance)}</span>],
             ['Days Left', <span key="days" className="font-bold" style={{ color: days > 0 ? 'var(--success)' : 'var(--text-tertiary)' }}>{days > 0 ? `+${days}d` : `${days}d`}</span>],
           ].map(([label, val]) => (
-            <div key={label as string} className="rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.02)] px-[14px] py-[11px]">
+            <div key={label as string} className="rounded-[10px] border border-[var(--border)] bg-[var(--insight-bg)] px-[14px] py-[11px]">
               <div className="text-[9.5px] font-bold uppercase tracking-[0.6px] text-[var(--text-tertiary)]">{label}</div>
               <div className="mt-[4px] text-[13px] font-semibold text-[var(--text-primary)]">{val}</div>
             </div>
@@ -164,8 +164,8 @@ export default function ClientDetail({ client, open, onClose }: Props) {
               {enrollments.map((enr: any, i: number) => {
                 const enrPaid = enr.payments?.reduce((s: number, p: any) => s + Number(p.amount), 0) || 0;
                 return (
-                  <div key={enr.id || i} className="flex items-center gap-[10px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.02)] px-[14px] py-[10px] text-[11.5px]">
-                    <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full text-[10px] font-bold" style={{ background: i === 0 ? 'rgba(255,55,95,0.2)' : 'rgba(255,255,255,0.06)', color: i === 0 ? '#FF7087' : 'var(--text-tertiary)' }}>{i + 1}</div>
+                  <div key={enr.id || i} className="flex items-center gap-[10px] rounded-[10px] border border-[var(--border)] bg-[var(--insight-bg)] px-[14px] py-[10px] text-[11.5px]">
+                    <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full text-[10px] font-bold" style={{ background: i === 0 ? 'rgba(255,55,95,0.2)' : 'var(--surface-hover)', color: i === 0 ? '#FF7087' : 'var(--text-tertiary)' }}>{i + 1}</div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-[6px]">
                         <span className="font-semibold text-[var(--text-primary)]">{enr.membership_plans?.duration || '—'}</span>
@@ -188,7 +188,7 @@ export default function ClientDetail({ client, open, onClose }: Props) {
           {editing ? (
             <>
               <button onClick={cancelEdit}
-                className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[9px] text-[11px] font-bold text-[var(--text-primary)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
+                className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[9px] text-[11px] font-bold text-[var(--text-primary)] transition-all hover:bg-[var(--surface-hover)]"
               >Cancel</button>
               <button onClick={saveEdit} disabled={saving}
                 className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[14px] py-[9px] text-[11px] font-bold text-white transition-all hover:-translate-y-px disabled:opacity-40"
@@ -198,10 +198,10 @@ export default function ClientDetail({ client, open, onClose }: Props) {
           ) : (
             <>
               <a href={`https://wa.me/${client.phone}`} target="_blank" rel="noopener noreferrer"
-                className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[9px] text-[11px] font-bold text-[var(--text-primary)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
+                className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[9px] text-[11px] font-bold text-[var(--text-primary)] transition-all hover:bg-[var(--surface-hover)]"
               >💬 WhatsApp</a>
               <a href={`tel:${client.phone}`}
-                className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[9px] text-[11px] font-bold text-[var(--text-primary)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
+                className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[var(--input-bg)] px-[14px] py-[9px] text-[11px] font-bold text-[var(--text-primary)] transition-all hover:bg-[var(--surface-hover)]"
               >📞 Call</a>
               <button
                 className="flex flex-1 items-center justify-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[14px] py-[9px] text-[11px] font-bold text-white transition-all hover:-translate-y-px"

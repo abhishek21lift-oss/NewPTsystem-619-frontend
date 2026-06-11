@@ -49,7 +49,7 @@ export default function Trainers() {
                   </div>
                   <span className="text-[14px] font-extrabold">{t.total_clients} clients</span>
                 </div>
-                <div className="h-[7px] rounded-[4px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
+                <div className="h-[7px] rounded-[4px] bg-[var(--chart-grid)] overflow-hidden">
                   <div className="h-full rounded-[4px]" style={{ width: `${pct}%`, background: meta.fill }} />
                 </div>
                 <div className="flex gap-[18px] mt-[8px]">
@@ -71,7 +71,7 @@ export default function Trainers() {
             const isGold = i === 0;
             return (
               <div key={t.id} className={`flex items-center gap-[13px] p-[13px] rounded-[16px] border border-[var(--border)] mb-[8px] last:mb-0 transition-transform hover:translate-x-[4px]`}
-                style={{ background: isGold ? 'linear-gradient(135deg, rgba(255,214,0,0.1), rgba(255,214,0,0.03))' : 'rgba(255,255,255,0.03)', borderColor: isGold ? 'rgba(255,214,0,0.22)' : '' }}
+                style={{ background: isGold ? 'linear-gradient(135deg, rgba(255,214,0,0.1), rgba(255,214,0,0.03))' : 'var(--surface)', borderColor: isGold ? 'rgba(255,214,0,0.22)' : '' }}
               >
                 <div className="text-[22px] w-[34px] text-center">{medals[i] || '🏅'}</div>
                 <div className="flex-1">

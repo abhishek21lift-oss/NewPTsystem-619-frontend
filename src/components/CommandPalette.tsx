@@ -65,7 +65,7 @@ export default function CommandPalette() {
     <>
       <div className="fixed inset-0 z-[80] bg-black/50 backdrop-blur-sm" onClick={() => setOpen(false)} />
       <div className="fixed left-1/2 top-[15%] z-[90] w-[460px] -translate-x-1/2 animate-[fadeUp_0.12s_ease-out] overflow-hidden rounded-[14px] border border-[var(--border)] shadow-2xl"
-        style={{ background: 'rgba(14,14,18,0.97)', backdropFilter: 'blur(40px)' }}
+        style={{ background: 'var(--command-bg)', backdropFilter: 'blur(40px)' }}
       >
         <div className="flex items-center gap-[10px] border-b border-[var(--border)] px-[16px] py-[12px]">
           <Search size={15} className="text-[var(--text-tertiary)]" strokeWidth={1.5} />
