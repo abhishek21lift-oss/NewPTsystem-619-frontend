@@ -12,29 +12,29 @@ export function KpiCard({ label, value, sub, color, icon: Icon, children, onClic
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.16,1,0.3,1] }}
-      className="relative cursor-default overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.07)] p-5 transition-all duration-300 hover:-translate-y-[5px] hover:border-[rgba(255,255,255,0.15)]"
-      style={{ background: 'rgba(255,255,255,0.04)', backdropFilter: 'blur(40px)' }}
+      className="relative cursor-default overflow-hidden rounded-[20px] border border-[rgba(255,255,255,0.06)] p-5 transition-all duration-300 hover:-translate-y-[4px] hover:border-[rgba(255,255,255,0.13)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.3)]"
+      style={{ background: 'rgba(255,255,255,0.03)', backdropFilter: 'blur(40px)' }}
       onClick={onClick}
     >
-      <div className="absolute -right-[30px] -top-[30px] h-[120px] w-[120px] rounded-full opacity-[0.08] blur-[30px]"
+      <div className="absolute -right-[30px] -top-[30px] h-[120px] w-[120px] rounded-full opacity-[0.07] blur-[30px]"
         style={{ background: color }}
       />
       <div className="relative z-[1]">
         <div className="mb-[10px] flex items-start justify-between">
-          <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[11px]"
+          <div className="flex h-[38px] w-[38px] items-center justify-center rounded-[12px]"
             style={{ background: `${color}18` }}
           >
-            <Icon size={18} style={{ color }} />
+            <Icon size={18} strokeWidth={1.5} style={{ color }} />
           </div>
           {children}
         </div>
-        <div className="mb-[5px] text-[10.5px] font-semibold uppercase tracking-[0.7px] text-[var(--text-tertiary)]">
+        <div className="mb-[4px] text-[10px] font-bold uppercase tracking-[0.8px] text-[var(--text-tertiary)]">
           {label}
         </div>
-        <div className="mb-[9px] text-[28px] font-extrabold tracking-tight leading-none">
+        <div className="mb-[8px] text-[28px] font-extrabold tracking-tight leading-none">
           {value}
         </div>
-        <div className="text-[11px] text-[var(--text-tertiary)]">{sub}</div>
+        <div className="text-[11px] text-[var(--text-tertiary)] font-medium">{sub}</div>
       </div>
     </motion.div>
   );
@@ -50,7 +50,7 @@ export function Sparkline({ heights }: { heights?: number[] }) {
             height: `${v}%`,
             minHeight: 3,
             opacity: 0.7,
-            background: i >= h.length - 3 ? 'var(--success)' : 'var(--aurora-red)',
+            background: i >= h.length - 3 ? 'var(--green)' : 'var(--red)',
           }}
         />
       ))}
@@ -64,7 +64,7 @@ export function RingChart({ pct, color }: { pct: number; color: string }) {
   return (
     <div className="relative h-[62px] w-[62px] shrink-0">
       <svg className="h-full w-full -rotate-90" viewBox="0 0 62 62">
-        <circle className="fill-none" cx="31" cy="31" r="26" stroke="rgba(255,255,255,0.07)" strokeWidth="5" />
+        <circle className="fill-none" cx="31" cy="31" r="26" stroke="rgba(255,255,255,0.06)" strokeWidth="5" />
         <circle className="fill-none stroke-linecap-round" cx="31" cy="31" r="26"
           stroke={color} strokeWidth="5" strokeDasharray={circumference} strokeDashoffset={offset}
           style={{ transition: 'stroke-dashoffset 1.3s cubic-bezier(0.4,0,0.2,1)' }}
@@ -72,7 +72,7 @@ export function RingChart({ pct, color }: { pct: number; color: string }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <div className="text-[14px] font-extrabold leading-none" style={{ color }}>{pct}%</div>
-        <div className="mt-[1px] text-[8.5px] font-semibold text-[var(--text-tertiary)] uppercase">goal</div>
+        <div className="mt-[1px] text-[8px] font-bold text-[var(--text-tertiary)] uppercase tracking-[0.3px]">goal</div>
       </div>
     </div>
   );
@@ -114,7 +114,7 @@ export function DonutChart({ segments, centerVal, centerLabel }: {
           startAngle = endAngle;
           return <path key={idx} d={d} fill={`url(#dg-${idx})`} stroke="rgba(6,6,8,0.85)" strokeWidth="1.5" />;
         })}
-        <circle cx="75" cy="75" r={innerR} fill="#0C0C0E" />
+        <circle cx="75" cy="75" r={innerR} fill="var(--bg)" />
       </svg>
       <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
         <div className="text-[22px] font-extrabold tracking-tight leading-none">{centerVal}</div>
@@ -141,7 +141,7 @@ export function CardHeader({ title, subtitle, action }: {
     <div className="flex items-center justify-between border-b border-[var(--border)] px-5 py-[13px]">
       <div>
         <div className="text-[13.5px] font-bold tracking-tight">{title}</div>
-        {subtitle && <div className="mt-[2px] text-[10.5px] text-[var(--text-tertiary)]">{subtitle}</div>}
+        {subtitle && <div className="mt-[2px] text-[10px] text-[var(--text-tertiary)] font-medium">{subtitle}</div>}
       </div>
       {action && <div>{action}</div>}
     </div>
@@ -152,19 +152,20 @@ export function StatusBadge({ status }: { status: string }) {
   if (status === 'active') return <span className="badge b-active"><span className="badge-dot" />Active</span>;
   if (status === 'expired') return <span className="badge b-expired"><span className="badge-dot" />Expired</span>;
   if (status === 'soon') return <span className="badge b-soon"><span className="badge-dot" />Expiring</span>;
+  if (status === 'pending') return <span className="badge b-pending"><span className="badge-dot" />Pending</span>;
   return null;
 }
 
 export function TrainerTag({ trainer }: { trainer: string }) {
-  const tagClass = trainer === 'AK' ? 'tag-a' : trainer === 'RS' ? 'tag-r' : trainer === 'SV' ? 'tag-s' : 'tag-k';
-  const tagText = trainer === 'AK' ? 'Abhishek' : trainer === 'RS' ? 'Riya' : trainer === 'SV' ? 'Shivani' : 'Rajat';
+  const tagClass = trainer === 'ABHISHEK' ? 'tag-a' : trainer === 'RIYA' ? 'tag-r' : trainer === 'RK' || trainer === 'RAJAT' ? 'tag-k' : 'tag-y';
+  const tagText = trainer === 'ABHISHEK' ? 'Abhishek' : trainer === 'RIYA' ? 'Riya' : trainer === 'RK' || trainer === 'RAJAT' ? 'Rajat' : trainer;
   return <span className={`tag ${tagClass}`}>{tagText}</span>;
 }
 
 export function LoadingSpinner() {
   return (
     <div className="flex items-center justify-center py-20">
-      <div className="h-8 w-8 animate-spin rounded-full border-2 border-[var(--accent)] border-t-transparent" />
+      <div className="h-9 w-9 animate-spin rounded-full border-[2.5px] border-[var(--red)] border-t-transparent" />
     </div>
   );
 }
@@ -260,7 +261,7 @@ export function drawDonut3D(id: string, segs: { v: number; c: string }[]) {
 
   ctx.beginPath();
   ctx.arc(cx, cy, IR, 0, Math.PI * 2);
-  ctx.fillStyle = '#0C0C0E';
+  ctx.fillStyle = 'var(--bg)';
   ctx.fill();
 
   const sh = ctx.createRadialGradient(cx - 16, cy - 22, 4, cx, cy, OR);
@@ -276,6 +277,7 @@ export function drawDonut3D(id: string, segs: { v: number; c: string }[]) {
 export function drawRevenueChart(id: string, data: { m: string; rev: number }[]) {
   const svg = document.getElementById(id) as unknown as SVGSVGElement | null;
   if (!svg) return;
+  svg.innerHTML = '';
   const max = Math.max(...data.map(d => d.rev));
   const W = 580, H = 170, pL = 6, pR = 6, pT = 12, pB = 28;
   const w = W - pL - pR, h = H - pT - pB;
@@ -301,13 +303,13 @@ export function drawRevenueChart(id: string, data: { m: string; rev: number }[])
     const y = pT + h - r * h;
     const v = max * r;
     const lbl = v >= 100000 ? '₹' + (v / 100000).toFixed(1) + 'L' : '₹' + Math.round(v / 1000) + 'K';
-    return `<line x1="${pL}" y1="${y}" x2="${W - pR}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,5"/><text x="${pL + 2}" y="${y - 3}" fill="rgba(255,255,255,0.18)" font-size="8" font-family="DM Mono,monospace">${lbl}</text>`;
+    return `<line x1="${pL}" y1="${y}" x2="${W - pR}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="4,5"/><text x="${pL + 2}" y="${y - 3}" fill="rgba(255,255,255,0.16)" font-size="8" font-family="JetBrains Mono,monospace">${lbl}</text>`;
   });
 
   const labels = pts.map((p, i) => {
     if (i % 3 !== 0) return '';
     const parts = p.m.split(' ');
-    return `<text x="${p.x}" y="${pT + h + 19}" fill="rgba(255,255,255,0.28)" font-size="8.5" text-anchor="middle" font-family="Plus Jakarta Sans">${parts[0].slice(0, 3)} '${(parts[1] || '').slice(2)}</text>`;
+    return `<text x="${p.x}" y="${pT + h + 19}" fill="rgba(255,255,255,0.26)" font-size="8.5" text-anchor="middle" font-family="Plus Jakarta Sans">${parts[0].slice(0, 3)} '${(parts[1] || '').slice(2)}</text>`;
   });
 
   const dots = pts.map((p, i) => {
@@ -319,8 +321,8 @@ export function drawRevenueChart(id: string, data: { m: string; rev: number }[])
   svg.innerHTML = `
     <defs>
       <linearGradient id="ag" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0%" stop-color="#FF375F" stop-opacity="0.28"/>
-        <stop offset="55%" stop-color="#FF375F" stop-opacity="0.07"/>
+        <stop offset="0%" stop-color="#FF375F" stop-opacity="0.26"/>
+        <stop offset="55%" stop-color="#FF375F" stop-opacity="0.06"/>
         <stop offset="100%" stop-color="#FF375F" stop-opacity="0"/>
       </linearGradient>
       <filter id="glow-f"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>

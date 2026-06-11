@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { AlertTriangle, DollarSign, CheckCircle, Users, Wallet } from 'lucide-react';
+import { AlertTriangle, DollarSign, CheckCircle, Users, Wallet, TrendingUp } from 'lucide-react';
 import { api } from '../lib/api';
 import type { DashboardData, TrainerBreakdown, PlanDistribution } from '../types';
 import TickerBar from '../components/TickerBar';
@@ -84,10 +84,10 @@ export default function Overview() {
     return {
       initials: t.initials,
       name: t.full_name,
-      role: i === 0 ? 'Head Trainer · K11 Certified · Owner' : `Personal Trainer`,
+      role: i === 0 ? 'Head Trainer · K11 Certified · Owner' : 'Personal Trainer',
       cls: ['r', 'p', 'b', 'y'][i % 4],
-      bg1: `rgba(255,55,95,0.12)`,
-      bg2: `rgba(255,55,95,0.04)`,
+      bg1: `rgba(255,55,95,0.10)`,
+      bg2: `rgba(255,55,95,0.03)`,
       gradient: [ 'linear-gradient(145deg,#FF375F,#8B0022)', 'linear-gradient(145deg,#FF6B9D,#C2185B)', 'linear-gradient(145deg,#5AC8F5,#0A84FF)', 'linear-gradient(145deg,#FFD60A,#FF8C00)' ][i % 4],
       shadow: [ 'rgba(255,55,95,0.4)', 'rgba(255,107,157,0.4)', 'rgba(90,200,245,0.4)', 'rgba(255,214,0,0.4)' ][i % 4],
       clients: t.total_clients,
@@ -106,61 +106,51 @@ export default function Overview() {
       <TickerBar />
 
       <div className="mb-[14px] flex items-center gap-[14px] overflow-hidden rounded-[16px] p-3 text-[12.5px] relative"
-        style={{ background: 'linear-gradient(135deg,rgba(255,55,95,0.18),rgba(255,149,0,0.14),rgba(191,90,242,0.12))', border: '1px solid rgba(255,55,95,0.32)' }}
+        style={{ background: 'linear-gradient(135deg,rgba(255,55,95,0.16),rgba(255,149,0,0.12),rgba(191,90,242,0.10))', border: '1px solid rgba(255,55,95,0.28)' }}
       >
-        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(90deg,transparent,rgba(255,214,0,0.05),transparent)' }} />
+        <div className="absolute inset-0 pointer-events-none" style={{ background: 'linear-gradient(90deg,transparent,rgba(255,214,0,0.04),transparent)' }} />
         <span className="text-[22px] shrink-0">🎉</span>
         <div className="flex-1">
-          <div className="text-[13px] font-extrabold tracking-tight" style={{ color: '#FF7087' }}>Grand Reopening — 19 June 2026</div>
-          <div className="mt-[2px] text-[11px] text-[var(--text-secondary)]">619 Fitness Studio is moving to a new, larger location in Lucknow. Mark the date!</div>
+          <div className="text-[13px] font-extrabold tracking-tight" style={{ color: 'var(--red-light)' }}>Grand Reopening — 19 June 2026</div>
+          <div className="mt-[2px] text-[11px] text-[var(--text-secondary)] font-medium">619 Fitness Studio is moving to a new, larger location in Lucknow. Mark the date!</div>
         </div>
         <div className="shrink-0 text-right">
-          <div className="text-[18px] font-extrabold tracking-tight" style={{ color: '#FFD60A' }}>{countdown > 0 ? countdown : countdown === 0 ? 'TODAY!' : 'Open!'}</div>
+          <div className="text-[18px] font-extrabold tracking-tight" style={{ color: 'var(--yellow)' }}>{countdown > 0 ? countdown : countdown === 0 ? 'TODAY!' : 'Open!'}</div>
           <div className="mt-[1px] text-[9.5px] font-bold uppercase tracking-[0.5px] text-[var(--text-tertiary)]">Days to Go</div>
         </div>
-        <button onClick={() => {}} className="shrink-0 rounded-[9px] border-none px-[14px] py-[7px] text-[11px] font-bold text-white cursor-pointer font-[inherit]"
-          style={{ background: 'linear-gradient(135deg,#FF375F,#CC1E3A)' }}
-        >Marketing Plan →</button>
+        <button className="btn-primary text-[11px] px-[14px] py-[7px]">Marketing →</button>
       </div>
 
       {stats.expired_enrollments > 0 && (
         <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}
-          className="mb-[14px] flex items-center gap-3 rounded-[16px] border border-[rgba(255,149,0,0.22)] p-3 text-[12.5px]"
-          style={{ background: 'linear-gradient(135deg, rgba(255,149,0,0.1), rgba(255,149,0,0.04))', color: 'var(--warning)' }}
+          className="mb-[14px] flex items-center gap-3 rounded-[16px] border border-[rgba(255,149,0,0.2)] p-3 text-[12.5px]"
+          style={{ background: 'linear-gradient(135deg, rgba(255,149,0,0.08), rgba(255,149,0,0.03))', color: 'var(--orange-light)' }}
         >
-          <AlertTriangle size={18} />
+          <AlertTriangle size={18} strokeWidth={1.5} />
           <span><strong>{stats.expired_enrollments} expired clients</strong> — renewals needed to maintain studio revenue.</span>
-          <span className="ml-auto cursor-pointer text-[11px] opacity-75 hover:opacity-100">View →</span>
+          <span className="ml-auto cursor-pointer text-[11px] opacity-70 hover:opacity-100 font-semibold">View →</span>
         </motion.div>
       )}
 
-      <div className="spotlight mb-[14px] relative overflow-hidden rounded-[22px] border border-[rgba(255,255,255,0.1)] p-5"
-        style={{ background: 'linear-gradient(135deg, rgba(255,55,95,0.12), rgba(10,132,255,0.08), rgba(191,90,242,0.06), rgba(50,215,75,0.06))' }}
-      >
-        <div className="absolute -right-[60px] -top-[60px] h-[200px] w-[200px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(255,55,95,0.15), transparent 70%)' }}
-        />
-        <div className="absolute bottom-[-40px] left-[30%] h-[140px] w-[140px] pointer-events-none"
-          style={{ background: 'radial-gradient(circle, rgba(10,132,255,0.1), transparent 70%)' }}
-        />
-        <div className="relative z-[1] mb-4 flex items-center gap-2 text-[9.5px] font-bold uppercase tracking-[1.2px] text-[var(--text-tertiary)]">
-          <span className="h-[6px] w-[6px] rounded-full bg-[var(--aurora-red)]" style={{ boxShadow: '0 0 6px rgba(255,55,95,0.6)', animation: 'blink 2s ease-in-out infinite' }} />
+      <div className="spotlight-card mb-[14px]">
+        <div className="relative z-[1] mb-3 flex items-center gap-2 text-[9.5px] font-bold uppercase tracking-[1.2px] text-[var(--text-tertiary)]">
+          <span className="h-[6px] w-[6px] rounded-full bg-[var(--red)]" style={{ boxShadow: '0 0 8px rgba(255,55,95,0.6)', animation: 'blink 2s ease-in-out infinite' }} />
           Studio · All-Time Performance
         </div>
         <div className="relative z-[1] grid grid-cols-5">
           {[
-            { label: 'Total Revenue', val: fmt(stats.total_revenue), color: '#5FE87A', sub: 'May 2025 – Now' },
-            { label: 'Active Clients', val: String(stats.active_enrollments), color: '#5AC8F5', sub: `${trainerBreakdown.length} trainers` },
+            { label: 'Total Revenue', val: fmt(stats.total_revenue), color: 'var(--green-light)', sub: 'May 2025 – Now' },
+            { label: 'Active Clients', val: String(stats.active_enrollments), color: 'var(--blue-light)', sub: `${trainerBreakdown.length} trainers` },
             { label: 'Total Enrolled', val: String(stats.total_clients), color: '', sub: 'All time' },
-            { label: 'Expired', val: String(stats.expired_enrollments), color: '#FFB340', sub: 'Needs renewal' },
-            { label: 'Avg Revenue/Mo', val: monthlyRevenue.length > 0 ? fmt(Math.round(stats.total_revenue / monthlyRevenue.length)) : fmt(0), color: '#D077FF', sub: 'Per month avg' },
+            { label: 'Expired', val: String(stats.expired_enrollments), color: 'var(--orange-light)', sub: 'Needs renewal' },
+            { label: 'Avg Revenue/Mo', val: monthlyRevenue.length > 0 ? fmt(Math.round(stats.total_revenue / monthlyRevenue.length)) : fmt(0), color: 'var(--purple-light)', sub: 'Per month avg' },
           ].map((item, i) => (
             <div key={i} className="border-r border-[var(--border)] px-[18px] first:pl-0 last:border-r-0">
-              <div className="mb-[5px] text-[10px] font-bold uppercase tracking-[0.6px] text-[var(--text-tertiary)]">{item.label}</div>
-              <div className="text-[24px] font-extrabold tracking-tight leading-none" style={{ color: item.color || 'var(--text-primary)' }}>
+              <div className="stat-label">{item.label}</div>
+              <div className="stat-value mb-[4px]" style={{ color: item.color || 'var(--text-primary)' }}>
                 {item.val}
               </div>
-              <div className="mt-[4px] text-[10.5px] text-[var(--text-tertiary)]">{item.sub}</div>
+              <div className="text-[10.5px] text-[var(--text-tertiary)] font-medium">{item.sub}</div>
             </div>
           ))}
         </div>
@@ -180,14 +170,14 @@ export default function Overview() {
             <div className="relative h-[150px] w-[150px]">
               <canvas id="d-status" className="h-[150px] w-[150px]" />
               <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-                <div className="text-[22px] font-extrabold tracking-tight leading-none" style={{ color: '#5FE87A' }}>{stats.active_enrollments}</div>
+                <div className="text-[22px] font-extrabold tracking-tight leading-none" style={{ color: 'var(--green-light)' }}>{stats.active_enrollments}</div>
                 <div className="mt-[2px] text-[9.5px] font-semibold uppercase tracking-[0.5px] text-[var(--text-tertiary)]">Active</div>
               </div>
             </div>
             <div className="flex w-full flex-col gap-[8px]">
-              <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: '#32D74B' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Active</span><span className="text-[12.5px] font-bold" style={{ color: '#5FE87A' }}>{stats.active_enrollments}</span></div>
+              <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: '#32D74B' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Active</span><span className="text-[12.5px] font-bold" style={{ color: 'var(--green-light)' }}>{stats.active_enrollments}</span></div>
               <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: 'rgba(255,255,255,0.2)' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Expired</span><span className="text-[12.5px] font-bold">{stats.expired_enrollments}</span></div>
-              <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: '#FF9500' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Expiring Soon</span><span className="text-[12.5px] font-bold" style={{ color: '#FFB340' }}>{stats.soon_enrollments}</span></div>
+              <div className="dl-item flex items-center gap-2 text-[11.5px]"><div className="h-[9px] w-[9px] shrink-0 rounded-full" style={{ background: '#FF9500' }} /><span className="flex-1 text-[var(--text-secondary)] font-medium">Expiring Soon</span><span className="text-[12.5px] font-bold" style={{ color: 'var(--orange-light)' }}>{stats.soon_enrollments}</span></div>
             </div>
           </div>
         </GlassCard>
@@ -242,9 +232,9 @@ export default function Overview() {
             <svg id="rev-svg" className="h-full w-full overflow-visible" viewBox="0 0 580 180" preserveAspectRatio="none" />
           </div>
           <div className="grid grid-cols-3 border-t border-[var(--border)] px-5 py-[14px]">
-            <div className="text-center"><div className="text-[17px] font-extrabold text-[var(--success)]">{peak ? fmt(peak.rev) : '—'}</div><div className="mt-[2px] text-[9.5px] uppercase tracking-[0.5px] text-[var(--text-tertiary)]">Peak Month</div></div>
-            <div className="text-center border-x border-[var(--border)]"><div className="text-[17px] font-extrabold text-[var(--aurora-teal)]">{peak ? peak.month : '—'}</div><div className="mt-[2px] text-[9.5px] uppercase tracking-[0.5px] text-[var(--text-tertiary)]">Best Month</div></div>
-            <div className="text-center"><div className="text-[17px] font-extrabold text-[var(--warning)]">{fmt(stats.total_revenue)}</div><div className="mt-[2px] text-[9.5px] uppercase tracking-[0.5px] text-[var(--text-tertiary)]">All-Time Total</div></div>
+            <div className="text-center"><div className="text-[17px] font-extrabold tracking-tight" style={{ color: 'var(--green)' }}>{peak ? fmt(peak.rev) : '—'}</div><div className="mt-[2px] text-[9.5px] uppercase tracking-[0.5px] text-[var(--text-tertiary)]">Peak Month</div></div>
+            <div className="text-center border-x border-[var(--border)]"><div className="text-[17px] font-extrabold tracking-tight" style={{ color: 'var(--blue-light)' }}>{peak ? peak.month : '—'}</div><div className="mt-[2px] text-[9.5px] uppercase tracking-[0.5px] text-[var(--text-tertiary)]">Best Month</div></div>
+            <div className="text-center"><div className="text-[17px] font-extrabold tracking-tight" style={{ color: 'var(--orange-light)' }}>{fmt(stats.total_revenue)}</div><div className="mt-[2px] text-[9.5px] uppercase tracking-[0.5px] text-[var(--text-tertiary)]">All-Time Total</div></div>
           </div>
         </GlassCard>
         <GlassCard>
@@ -253,21 +243,16 @@ export default function Overview() {
             {activities.slice(0, 6).map((act, i) => (
               <div key={act.id || i} className="flex items-start gap-3 border-b border-[rgba(255,255,255,0.04)] py-[10px] last:border-b-0">
                 <div className="flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[10px] text-[14px]"
-                  style={{ background: act.color || 'rgba(10,132,255,0.12)' }}
+                  style={{ background: act.color || 'rgba(10,132,255,0.10)' }}
                 >
                   {act.icon || '📌'}
                 </div>
                 <div className="flex-1">
-                  <div className="text-[12.5px] font-medium leading-[1.5] text-[var(--text-secondary)]">
-                    {(() => {
-                      const text = act.description || '';
-                      return text.split(/(₹[\d,]+)/g).map((part, i) =>
-                        /^₹[\d,]+$/.test(part)
-                          ? <strong key={i} style={{color: 'var(--warning)'}}>{part}</strong>
-                          : part
-                      );
-                    })()}
-                  </div>
+                  <div className="text-[12.5px] font-medium leading-[1.5] text-[var(--text-secondary)]"
+                    dangerouslySetInnerHTML={{
+                      __html: (act.description || '').replace(/(₹[\d,]+)/g, '<strong style="color:var(--orange-light)">$1</strong>')
+                    }}
+                  />
                   <div className="mt-[2px] text-[10px] text-[var(--text-tertiary)]">{act.created_at ? new Date(act.created_at).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) : ''}</div>
                 </div>
               </div>
@@ -278,23 +263,23 @@ export default function Overview() {
 
       <GlassCard className="mb-[14px]">
         <CardHeader title="Monthly Trainer Snapshot" subtitle="Current active period"
-          action={<div className="text-[11px] text-[var(--text-tertiary)]">Total: <span className="font-bold text-[var(--success)]">{fmt(totalMonthlyRev)}</span></div>}
+          action={<div className="text-[11px] text-[var(--text-tertiary)]">Total: <span className="font-bold" style={{ color: 'var(--green)' }}>{fmt(totalMonthlyRev)}</span></div>}
         />
         <div className="grid grid-cols-4 gap-3 px-5 py-[18px]">
           {trainerCards.map((t, i) => (
             <div key={i} className={`relative overflow-hidden rounded-[16px] border border-[var(--border)] tc-${t.cls} p-[18px] transition-all hover:-translate-y-[2px]`}
               style={{ background: `linear-gradient(145deg, ${t.bg1}, ${t.bg2})` }}
             >
-              <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full text-[15px] font-extrabold mb-[13px]"
+              <div className="flex h-[46px] w-[46px] items-center justify-center rounded-full text-[15px] font-extrabold mb-[13px] text-white"
                 style={{ background: t.gradient, boxShadow: `0 5px 18px ${t.shadow}` }}
               >{t.initials}</div>
               <div className="mb-[2px] text-[14px] font-bold tracking-tight">{t.name}</div>
-              <div className="mb-[14px] text-[10px] text-[var(--text-tertiary)]">{t.role}</div>
+              <div className="mb-[14px] text-[10px] text-[var(--text-tertiary)] font-medium">{t.role}</div>
               <div className="mb-[5px] flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Active Clients</span><span className="font-bold">{t.clients}</span></div>
-              <div className="mb-[3px] h-[4px] rounded-[2px] bg-[rgba(255,255,255,0.07)] overflow-hidden"><div className="h-full rounded-[2px]" style={{ width: `${t.pct}%`, background: t.fillGrad }} /></div>
-              <div className="mt-[6px] flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Monthly Revenue</span><span className="font-bold text-[var(--success)]">{fmt(t.revenue)}</span></div>
-              <div className="flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Commission (50%)</span><span className="font-bold text-[var(--warning)]">{fmt(t.commission)}</span></div>
-              <div className="flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">All-Time Revenue</span><span className="font-bold text-[var(--aurora-teal)]">{fmt(t.alltime)}</span></div>
+              <div className="mb-[3px] h-[4px] rounded-[2px] bg-[rgba(255,255,255,0.06)] overflow-hidden"><div className="h-full rounded-[2px]" style={{ width: `${t.pct}%`, background: t.fillGrad }} /></div>
+              <div className="mt-[6px] flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Monthly Revenue</span><span className="font-bold" style={{ color: 'var(--green)' }}>{fmt(t.revenue)}</span></div>
+              <div className="flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">Commission (50%)</span><span className="font-bold" style={{ color: 'var(--orange-light)' }}>{fmt(t.commission)}</span></div>
+              <div className="flex items-center justify-between text-[12px]"><span className="text-[var(--text-secondary)]">All-Time Revenue</span><span className="font-bold" style={{ color: 'var(--blue-light)' }}>{fmt(t.alltime)}</span></div>
             </div>
           ))}
         </div>
@@ -307,18 +292,18 @@ export default function Overview() {
         <div className="px-5 py-4">
           <div className="grid grid-cols-4 gap-3">
             {[
-              { label: 'Revenue Target', current: monthlyRevenue.length > 0 ? fmt(monthlyRevenue[monthlyRevenue.length - 1]?.rev || 0) : fmt(0), target: fmt(200000), pct: monthlyRevenue.length > 0 ? Math.min(Math.round(((monthlyRevenue[monthlyRevenue.length - 1]?.rev || 0) / 200000) * 100), 100) : 0, color: '#5FE87A', fill: 'linear-gradient(90deg,#32D74B,#5FE87A)' },
-              { label: 'Active Clients', current: String(stats.active_enrollments), target: '40', pct: Math.min(Math.round((stats.active_enrollments / 40) * 100), 100), color: '#5AC8F5', fill: 'linear-gradient(90deg,#0A84FF,#5AC8F5)' },
-              { label: 'Retention Rate', current: `${Math.round((stats.active_enrollments / Math.max(stats.total_clients, 1)) * 100)}%`, target: '60%', pct: Math.round((stats.active_enrollments / Math.max(stats.total_clients, 1)) * 100), color: '#FFB340', fill: 'linear-gradient(90deg,#FF9500,#FFB340)' },
-              { label: 'Avg Revenue/Client', current: fmt(Math.round(stats.total_revenue / Math.max(stats.total_clients, 1))), target: fmt(25000), pct: Math.min(Math.round(((stats.total_revenue / Math.max(stats.total_clients, 1)) / 25000) * 100), 100), color: '#D077FF', fill: 'linear-gradient(90deg,#BF5AF2,#D077FF)' },
+              { label: 'Revenue Target', current: monthlyRevenue.length > 0 ? fmt(monthlyRevenue[monthlyRevenue.length - 1]?.rev || 0) : fmt(0), target: fmt(200000), pct: monthlyRevenue.length > 0 ? Math.min(Math.round(((monthlyRevenue[monthlyRevenue.length - 1]?.rev || 0) / 200000) * 100), 100) : 0, color: 'var(--green-light)', fill: 'linear-gradient(90deg,#32D74B,#5FE87A)' },
+              { label: 'Active Clients', current: String(stats.active_enrollments), target: '40', pct: Math.min(Math.round((stats.active_enrollments / 40) * 100), 100), color: 'var(--blue-light)', fill: 'linear-gradient(90deg,#0A84FF,#5AC8F5)' },
+              { label: 'Retention Rate', current: `${Math.round((stats.active_enrollments / Math.max(stats.total_clients, 1)) * 100)}%`, target: '60%', pct: Math.round((stats.active_enrollments / Math.max(stats.total_clients, 1)) * 100), color: 'var(--orange-light)', fill: 'linear-gradient(90deg,#FF9500,#FFB340)' },
+              { label: 'Avg Revenue/Client', current: fmt(Math.round(stats.total_revenue / Math.max(stats.total_clients, 1))), target: fmt(25000), pct: Math.min(Math.round(((stats.total_revenue / Math.max(stats.total_clients, 1)) / 25000) * 100), 100), color: 'var(--purple-light)', fill: 'linear-gradient(90deg,#BF5AF2,#D077FF)' },
             ].map((g, i) => (
-              <div key={i} className="rounded-[16px] border border-[var(--border)] bg-[var(--surface)] p-4">
+              <div key={i} className="rounded-[16px] border border-[var(--border)] bg-[rgba(255,255,255,0.02)] p-4">
                 <div className="mb-[10px] text-[10px] font-bold uppercase tracking-[0.6px] text-[var(--text-tertiary)]">{g.label}</div>
                 <div className="mb-[8px] flex items-baseline justify-between">
                   <div className="text-[18px] font-extrabold tracking-tight" style={{ color: g.color }}>{g.current}</div>
                   <div className="text-[10.5px] text-[var(--text-tertiary)]">/ {g.target}</div>
                 </div>
-                <div className="h-[5px] rounded-[3px] bg-[rgba(255,255,255,0.07)] overflow-hidden">
+                <div className="h-[5px] rounded-[3px] bg-[rgba(255,255,255,0.06)] overflow-hidden">
                   <div className="h-full rounded-[3px] transition-all duration-1400" style={{ width: `${g.pct}%`, background: g.fill }} />
                 </div>
                 <div className="mt-[6px] text-[11px] font-bold" style={{ color: `${g.color}` }}>{g.pct}% achieved</div>

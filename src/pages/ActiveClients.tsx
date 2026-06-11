@@ -35,17 +35,17 @@ export default function ActiveClients() {
             <CardHeader title={<span style={{ color: meta.color }}>{meta.name} · Active</span>}
               subtitle={`${list.length} clients`}
               action={
-                <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full text-[10.5px] font-extrabold"
+                <div className="flex h-[30px] w-[30px] items-center justify-center rounded-full text-[10.5px] font-extrabold text-white"
                   style={{ background: meta.bg, boxShadow: `0 3px 10px ${meta.shadow}` }}
                 >{meta.initials}</div>
               }
             />
             <div className="flex flex-col gap-[5px] px-[18px] py-[10px]">
               {list.map((e, i) => (
-                <div key={e.id} className="flex items-center gap-[9px] rounded-[11px] border border-[var(--border)] bg-[var(--surface)] px-[11px] py-[9px] transition-all hover:bg-[var(--surface-hover)] hover:border-[var(--border-strong)] hover:translate-x-[3px] cursor-pointer">
+                <div key={e.id} className="flex items-center gap-[9px] rounded-[12px] border border-[var(--border)] bg-[var(--surface)] px-[11px] py-[9px] transition-all hover:bg-[var(--surface-hover)] hover:border-[var(--border-strong)] hover:translate-x-[3px] cursor-pointer">
                   <div className="text-[9.5px] text-[var(--text-tertiary)] font-mono w-[18px]">{String(i + 1).padStart(2, '0')}</div>
                   <div className="flex h-[28px] w-[28px] shrink-0 items-center justify-center rounded-full text-[10px] font-extrabold"
-                    style={{ background: 'rgba(255,55,95,0.15)', border: '1px solid rgba(255,55,95,0.2)', color: '#FF7087' }}
+                    style={{ background: 'rgba(255,55,95,0.15)', border: '1px solid rgba(255,55,95,0.2)', color: 'var(--red-light)' }}
                   >{e.clients?.full_name?.[0] || '?'}</div>
                   <div className="flex-1 text-[12.5px] font-semibold">{e.clients?.full_name || 'Unknown'}</div>
                   <div className="text-[10px] text-[var(--text-tertiary)] font-mono">{e.clients?.phone || '—'}</div>

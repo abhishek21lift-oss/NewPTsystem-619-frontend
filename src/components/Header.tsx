@@ -24,31 +24,31 @@ export default function Header({ title, subtitle, onNewClient, notifOpen, onNoti
 
   return (
     <header
-      className="sticky top-0 z-40 flex h-[var(--header-h)] items-center justify-between border-b border-[var(--border)] px-[30px]"
-      style={{ background: 'rgba(10,10,11,0.75)', backdropFilter: 'blur(30px) saturate(180%)' }}
+      className="sticky top-0 z-40 flex h-[var(--header-h)] items-center justify-between border-b border-[var(--border)] px-[28px]"
+      style={{ background: 'rgba(8,8,12,0.78)', backdropFilter: 'blur(30px) saturate(180%)' }}
     >
       <div>
-        <h1 className="text-[17px] font-bold tracking-tight">{title}</h1>
-        <p className="mt-[1px] text-[11px] text-[var(--text-tertiary)]">{subtitle}</p>
+        <h1 className="text-[17px] font-extrabold tracking-tight">{title}</h1>
+        <p className="mt-[1px] text-[10.5px] text-[var(--text-tertiary)] font-medium">{subtitle}</p>
       </div>
 
-      <div className="flex items-center gap-[10px]">
+      <div className="flex items-center gap-[8px]">
         <div className="relative">
           <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-tertiary)]" />
           <input
             type="text"
             placeholder="Search… ⌘K"
-            className="w-[200px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.05)] px-[14px] py-[8px] pl-[30px] text-xs text-[var(--text-secondary)] placeholder:text-[var(--text-tertiary)] transition-all focus:w-[240px] focus:border-[rgba(255,59,48,0.4)] focus:bg-[rgba(255,255,255,0.07)] focus:text-[var(--text-primary)] focus:outline-none"
+            className="w-[200px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[14px] py-[8px] pl-[30px] text-xs text-[var(--text-secondary)] placeholder:text-[var(--text-tertiary)] transition-all focus:w-[240px] focus:border-[rgba(255,55,95,0.35)] focus:bg-[rgba(255,255,255,0.06)] focus:text-[var(--text-primary)] focus:outline-none font-[inherit]"
           />
         </div>
 
         <div className="relative">
           <div
             onClick={onNotifToggle}
-            className="relative flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.05)] transition-all hover:bg-[rgba(255,255,255,0.09)]"
+            className="relative flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
           >
-            <Bell size={15} />
-            <div className="absolute -right-[4px] -top-[4px] flex h-4 w-4 items-center justify-center rounded-full bg-[var(--red)] text-[9px] font-extrabold shadow-[0_0_0_2px_var(--bg)]">
+            <Bell size={15} strokeWidth={1.5} />
+            <div className="absolute -right-[4px] -top-[4px] flex h-[16px] min-w-[16px] items-center justify-center rounded-full bg-[var(--red)] px-[3px] text-[9px] font-extrabold text-white shadow-[0_0_0_2px_var(--bg)]">
               6
             </div>
           </div>
@@ -57,22 +57,22 @@ export default function Header({ title, subtitle, onNewClient, notifOpen, onNoti
 
         <div
           onClick={toggle}
-          className="flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.05)] transition-all hover:bg-[rgba(255,255,255,0.09)]"
+          className="flex h-[34px] w-[34px] cursor-pointer items-center justify-center rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] transition-all hover:bg-[rgba(255,255,255,0.08)]"
         >
-          {isDark ? <Moon size={15} /> : <Sun size={15} />}
+          {isDark ? <Moon size={15} strokeWidth={1.5} /> : <Sun size={15} strokeWidth={1.5} />}
         </div>
 
-        <button className="flex items-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.06)] px-[14px] py-[7px] text-xs font-semibold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.1)] hover:text-[var(--text-primary)]">
-          <Download size={12} />
+        <button className="flex items-center gap-[6px] rounded-[10px] border border-[var(--border)] bg-[rgba(255,255,255,0.04)] px-[13px] py-[7px] text-xs font-semibold text-[var(--text-secondary)] transition-all hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-primary)]">
+          <Download size={12} strokeWidth={2} />
           Export
         </button>
 
         <button
           onClick={onNewClient}
-          className="flex items-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[14px] py-[7px] text-xs font-semibold text-white transition-all hover:-translate-y-[1px] active:translate-y-0 cursor-pointer"
-          style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.4), inset 0 1px 0 rgba(255,255,255,0.15)' }}
+          className="flex items-center gap-[6px] rounded-[10px] bg-gradient-to-r from-[#FF375F] to-[#CC1E3A] px-[14px] py-[7px] text-xs font-bold text-white transition-all hover:-translate-y-[1px] active:translate-y-0 cursor-pointer font-[inherit]"
+          style={{ boxShadow: '0 4px 14px rgba(255,55,95,0.35), inset 0 1px 0 rgba(255,255,255,0.15)' }}
         >
-          <Plus size={12} />
+          <Plus size={13} strokeWidth={2.5} />
           New Client
         </button>
       </div>

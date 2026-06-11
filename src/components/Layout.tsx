@@ -23,15 +23,15 @@ function getScheduleSubtitle() {
 
 const titles: Record<string, { title: string; subtitle: string }> = {
   '/': { title: 'Dashboard Overview', subtitle: `619 Fitness Studio · Lucknow · ${getDateSubtitle()}` },
-  '/clients': { title: 'All Clients', subtitle: '67 unique clients · Latest package per client shown' },
-  '/active': { title: 'Active Clients', subtitle: '23 clients currently active' },
+  '/clients': { title: 'All Clients', subtitle: 'Unique clients · Latest package per client shown' },
+  '/active': { title: 'Active Clients', subtitle: 'Currently active enrollments' },
   '/revenue': { title: 'Revenue Analysis', subtitle: 'Total studio earnings per month' },
-  '/payouts': { title: 'Trainer Payouts', subtitle: '50% commission split' },
+  '/payouts': { title: 'Trainer Payouts', subtitle: '50% commission split breakdown' },
   '/balance': { title: 'Balance Sheet', subtitle: 'Outstanding payment records' },
-  '/trainers': { title: 'Trainer Performance', subtitle: 'Leaderboard & stats' },
-  '/analytics': { title: 'Studio Analytics', subtitle: 'AI-powered insights' },
+  '/trainers': { title: 'Trainer Performance', subtitle: 'Leaderboard & client portfolio' },
+  '/analytics': { title: 'Studio Analytics', subtitle: 'Data-driven insights' },
   '/schedule': { title: 'Schedule & Sessions', subtitle: getScheduleSubtitle() },
-  '/forecast': { title: 'Revenue Forecast', subtitle: '6-month projection' },
+  '/forecast': { title: 'Revenue Forecast', subtitle: '6-month projection & scenarios' },
   '/membership': { title: 'Membership Plans', subtitle: 'Manage subscription packages' },
 };
 
@@ -49,14 +49,14 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen" style={{ background: 'var(--bg)' }}>
       <div
-        className="pointer-events-none fixed inset-0"
+        className="pointer-events-none fixed inset-0 z-0"
         style={{
           backgroundImage:
-            'radial-gradient(ellipse 800px 600px at 10% 0%, rgba(255,59,48,0.06) 0%, transparent 60%), radial-gradient(ellipse 600px 600px at 90% 100%, rgba(10,132,255,0.05) 0%, transparent 55%)',
+            'radial-gradient(ellipse 700px 500px at 5% 0%, rgba(255,55,95,0.05) 0%, transparent 60%), radial-gradient(ellipse 500px 500px at 95% 100%, rgba(10,132,255,0.04) 0%, transparent 55%)',
         }}
       />
       <Sidebar onAddTrainer={() => setAddTrainerOpen(true)} />
-      <main className="ml-[var(--sidebar-w)] min-h-screen">
+      <main className="relative z-[1] ml-[var(--sidebar-w)] min-h-screen">
         <Header
           title={page.title}
           subtitle={page.subtitle}
@@ -65,7 +65,7 @@ export default function Layout({ children }: LayoutProps) {
           onNotifToggle={() => setNotifOpen(o => !o)}
           onNotifClose={() => setNotifOpen(false)}
         />
-        <div className="px-[30px] pb-[44px] pt-[26px]">
+        <div className="px-[28px] pb-[44px] pt-[24px]">
           {children}
         </div>
       </main>
